@@ -39,7 +39,7 @@ public class UnitOfWork implements IUnitOfWork {
       try {
         _mediator.notify(MakeGeneryc(event));
       } catch (Exception e) {
-		e.printStackTrace();
+		// e.printStackTrace();
       }
     }
   }
