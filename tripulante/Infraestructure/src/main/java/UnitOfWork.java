@@ -3,6 +3,7 @@ import Repositories.IUnitOfWork;
 import core.ConfirmedDomainEvent;
 import core.DomainEvent;
 import Fourteam.db.Exception.DataBaseException;
+import Fourteam.http.Exception.HttpException;
 import Fourteam.mediator.Mediator;
 import java.util.List;
 
