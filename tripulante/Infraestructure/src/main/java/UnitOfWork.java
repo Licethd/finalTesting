@@ -3,6 +3,7 @@ import Repositories.IUnitOfWork;
 import core.ConfirmedDomainEvent;
 import core.DomainEvent;
 import Fourteam.db.Exception.DataBaseException;
+import Fourteam.http.Exception.HttpException;
 import Fourteam.mediator.Mediator;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class UnitOfWork implements IUnitOfWork {
       try {
         _mediator.notify(MakeGeneryc(event));
       } catch (Exception e) {
-		// e.printStackTrace();
+		e.printStackTrace();
       }
     }
   }

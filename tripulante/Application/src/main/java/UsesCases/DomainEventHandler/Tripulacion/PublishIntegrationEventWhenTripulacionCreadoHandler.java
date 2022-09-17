@@ -18,10 +18,15 @@ public class PublishIntegrationEventWhenTripulacionCreadoHandler
   @Override
   public void handle(Notification notification) {
     ConfirmedDomainEvent event = (ConfirmedDomainEvent) notification;
-    TripulacionRegistrado tripulacion = (TripulacionRegistrado) event.DomainEvent;
-    IntegrationEvents.TripulacionCreado evento = new IntegrationEvents.TripulacionCreado();
-    evento.setKeyTripulacion(tripulacion.getKey());
-    evento.setDescripcion(tripulacion.getNombre());
-    this.publishEndpoint.Publish(evento);
+	try{
+		TripulacionRegistrado tripulacion = (TripulacionRegistrado) event.DomainEvent;
+		IntegrationEvents.TripulacionCreado evento = new IntegrationEvents.TripulacionCreado();
+		evento.setKeyTripulacion(tripulacion.getKey());
+		evento.setDescripcion(tripulacion.getNombre());
+		this.publishEndpoint.Publish(evento);
+	}catch(Exception e){
+
+	}
+
   }
 }

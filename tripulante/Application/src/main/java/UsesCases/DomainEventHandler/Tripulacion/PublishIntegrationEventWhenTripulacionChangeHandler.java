@@ -26,11 +26,9 @@ public class PublishIntegrationEventWhenTripulacionChangeHandler
   @Override
   public void handle(Notification notification) {
     ConfirmedDomainEvent event = (ConfirmedDomainEvent) notification;
-    TripulacionChange tripulacionChange = (TripulacionChange) event.DomainEvent;
-
-
 	try {
-		Tripulacion tripulacion = _tripulacionRepository.FindByKey(tripulacionChange.Key);
+		TripulacionChange tripulacionChange = (TripulacionChange) event.DomainEvent;
+		Tripulacion tripulacion = _tripulacionRepository.FindByKey(tripulacionChange.KeyTripulacion);
 		IntegrationEvents.TripulacionChange evento = new IntegrationEvents.TripulacionChange();
 		evento.Key = tripulacion.key;
 		evento.descripcion = tripulacion.getDescripcion();
@@ -41,9 +39,6 @@ public class PublishIntegrationEventWhenTripulacionChangeHandler
 		  tripulanteDto.nombre = tripulante.getNombre();
 		  tripulanteDto.apellido = tripulante.getApellido();
 		  tripulanteDto.tipo = tripulante.getTipo();
-
-
-
 		  arrTripulantes.add(tripulanteDto);
 		});
 		evento.tripulantes = arrTripulantes;
