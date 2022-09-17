@@ -1,0 +1,21 @@
+services:
+  database:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    ports:
+      - 80:80
+      - 27017:27017
+    volumes:
+      - ./db/:/data/db
+  server:
+    image: dockerliceth/tripulante-java
+    build: ./tripulante
+    network_mode: "service:database"
+  web:
+    image: nginx:latest
+    network_mode: "service:database"
+    volumes:
+      - ./html:/usr/share/nginx/html
+      - ./nginx/conf.d:/etc/nginx/conf.d

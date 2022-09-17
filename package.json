@@ -1,0 +1,30 @@
+{
+	"name": "tripulanteinte",
+	"version": "1.0.0",
+	"description": "",
+	"main": ".prettierrc.js",
+	"scripts": {
+		"test": "mvn test -f ./tripulante",
+		"prepare": "husky install"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Licethd/tripulanteM6.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Licethd/tripulanteM6/issues"
+	},
+	"homepage": "https://github.com/Licethd/tripulanteM6#readme",
+	"devDependencies": {
+		"husky": "^8.0.0",
+		"lint-staged": "^13.0.3"
+	},
+	"lint-staged": {
+		"*.{html,css,scss,js,ts,tsx,json,md,yaml,java}": [
+			"prettier --write"
+		]
+	}
+}

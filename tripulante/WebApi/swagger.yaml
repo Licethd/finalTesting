@@ -1,0 +1,63 @@
+servers:
+- {url: 'http://localhost/api/'}
+openapi: 3.0.0
+paths:
+  /tripulante/:
+    get:
+      summary: /tripulante getAll
+      operationId: /tripulante_getAll
+      responses:
+        '200': {description: Response 200}
+      tags: [/tripulante]
+  /tripulante/registro:
+    post:
+      summary: /tripulante register
+      requestBody:
+        content:
+          application/json:
+            schema: {type: object}
+      operationId: /tripulante_register
+      responses:
+        '200': {description: Response 200}
+      tags: [/tripulante]
+  /tripulante/{key}:
+    get:
+      summary: /tripulante getByKey
+      operationId: /tripulante_getByKey
+      responses:
+        '200': {description: Response 200}
+      parameters:
+      - schema: {type: string}
+        in: path
+        name: key
+        required: true
+      tags: [/tripulante]
+    delete:
+      summary: /tripulante delete
+      operationId: /tripulante_delete
+      responses:
+        '200': {description: Response 200}
+      parameters:
+      - schema: {type: string}
+        in: path
+        name: key
+        required: true
+      tags: [/tripulante]
+    put:
+      summary: /tripulante edit
+      requestBody:
+        content:
+          application/json:
+            schema: {type: object}
+      operationId: /tripulante_edit
+      responses:
+        '200': {description: Response 200}
+      parameters:
+      - schema: {type: string}
+        in: path
+        name: key
+        required: true
+      tags: [/tripulante]
+info: {description: FuourTeam API description, title: FourTeam API, version: 1.0.1}
+tags:
+- {name: /tripulante, description: /tripulante_descripcion}
