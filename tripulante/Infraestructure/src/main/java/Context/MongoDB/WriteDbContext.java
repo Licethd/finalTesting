@@ -48,10 +48,10 @@ public class WriteDbContext extends IWriteDbContext {
     if (DB_PASS != null && DB_USER != null) {
       uri = new MongoClientURI(
           "mongodb://" +
-              DB_USER +
-              ":" +
-              DB_PASS +
-              "@" +
+            //   DB_USER +
+            //   ":" +
+            //   DB_PASS +
+            //   "@" +
               DB_HOST +
               ":" +
               DB_PORT +

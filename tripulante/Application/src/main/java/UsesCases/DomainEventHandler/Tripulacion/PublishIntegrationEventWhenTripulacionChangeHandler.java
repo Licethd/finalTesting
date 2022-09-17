@@ -48,9 +48,5 @@ public class PublishIntegrationEventWhenTripulacionChangeHandler
 	  }
 
 
-    // IntegrationEvents.TripulacionChange evento = new IntegrationEvents.TripulacionChange();
-    // evento.setKeyTripulacion(tripulacion.getKey());
-    // evento.setDescripcion(tripulacion.getNombre());
-    // this.publishEndpoint.Publish(evento);
   }
 }

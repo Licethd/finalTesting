@@ -27,8 +27,6 @@ public class CrearTripulacionHandler implements RequestHandler<CrearTripulacionC
 	public Tripulacion handle(CrearTripulacionCommand request) throws Exception {
 
 
-		// Tripulacion tripulacion = _tripulacionFactory.Create(request.tripulacionDto.Descripcion,
-		// 		request.tripulacionDto.Tripulantes);
 
 		Tripulacion tripulacion = _tripulacionFactory.Create(request.tripulacionDto.Descripcion);
 

@@ -15,7 +15,6 @@ public class TripulacionChange extends DomainEvent {
 	public List<Tripulante> Tripulantes;
 
 	public TripulacionChange(UUID key, String nombre, List<Tripulante> Tripu) {
-		// public TripulacionRegistrado(UUID key, String nombre) {
 		super(LocalDateTime.now());
 		KeyTripulacion = key;
 		Nombre = nombre;
