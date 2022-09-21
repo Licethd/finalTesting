@@ -4,7 +4,7 @@ import Fourteam.config.Config;
 import Fourteam.extensions.IServiceCollection;
 import Context.IWriteDbContext;
 import Repository.*;
-import UsesCases.Consumers.AeronaveCreadoConsumer;
+import UsesCases.Consumers.VueloCreadoConsumer;
 
 public class Infraestructure {
 	public static void AddInfraestructure() {
@@ -23,7 +23,7 @@ public class Infraestructure {
 	private static void AddRabbitMq() {
 		IServiceCollection.AddMassTransit(config -> {
 
-			config.AddConsumer(AeronaveCreadoConsumer.class);
+			config.AddConsumer(VueloCreadoConsumer.class);
 			config.UsingRabbitMq((context, cfg) -> {
 				cfg.Host = Config.getProperty("rabit.host");
 				cfg.User = Config.getProperty("rabit.user");

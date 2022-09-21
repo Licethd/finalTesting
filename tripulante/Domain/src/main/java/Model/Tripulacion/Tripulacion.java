@@ -25,16 +25,12 @@ public class Tripulacion extends AggregateRoot<UUID> {
 
 	public Tripulacion(
 			String descripcion
-	// List<Tripulante> tripulantes
 
-	// String estado
-	// LocalDateTime fechaOn
 	) {
 		key = UUID.randomUUID();
 		this.Descripcion = descripcion;
 		this.Estado = 1;
 		this.FechaOn = LocalDateTime.now();
-		// this.Tripulantes= tripulantes;
 		this.Tripulantes = new ArrayList<Tripulante>();
 	}
 

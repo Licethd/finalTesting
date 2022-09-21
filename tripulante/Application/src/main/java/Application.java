@@ -59,7 +59,7 @@ public class Application {
         IMediator.registerHandler(AddTripulanteHandler.class);
 
 
-		// IMediator.registerHandler(PublishIntegrationEventWhenTripulacionCreadoHandler.class);
+		IMediator.registerHandler(PublishIntegrationEventWhenTripulacionCreadoHandler.class);
 		IMediator.registerHandler(PublishIntegrationEventWhenTripulacionChangeHandler.class);
 
 

@@ -1,5 +1,6 @@
 package UsesCases.Command.Tripulante.Editar;
 
+import Dto.Tripulante.TripulanteDto;
 import Factories.ITripulanteFactory;
 import Model.Tripulante.Tripulante;
 import Repositories.ITripulanteRepository;
@@ -9,7 +10,7 @@ import Fourteam.http.HttpStatus;
 import Fourteam.mediator.RequestHandler;
 
 public class EditarTripulanteHandler
-	implements RequestHandler<EditarTripulanteCommand, Tripulante> {
+	implements RequestHandler<EditarTripulanteCommand, TripulanteDto> {
 
 	private ITripulanteFactory _tripulanteFactory;
 	private ITripulanteRepository _tripulanteRepository;
@@ -26,7 +27,7 @@ public class EditarTripulanteHandler
 	}
 
 	@Override
-	public Tripulante handle(EditarTripulanteCommand request)
+	public TripulanteDto handle(EditarTripulanteCommand request)
 		throws Exception {
 		Tripulante tripulante = _tripulanteRepository.FindByKey(
 			request.tripulanteDto.Key
@@ -46,6 +47,7 @@ public class EditarTripulanteHandler
 		tripulante.setNroMillas(request.tripulanteDto.NroMillas);
 		tripulante.setCargo(request.tripulanteDto.Cargo);
 		_tripulanteRepository.Update(tripulante);
-		return tripulante;
+		// return tripulante;
+		return new TripulanteDto(tripulante.key, tripulante.getNombre(), tripulante.getApellido(), tripulante.getEmailAddress(), tripulante.getTipo(), tripulante.getHorasVuelo(), tripulante.getNroMillas(),tripulante.getCargo());
 	}
 }

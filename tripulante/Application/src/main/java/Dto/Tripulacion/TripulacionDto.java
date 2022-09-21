@@ -18,11 +18,11 @@ public class TripulacionDto {
 	public TripulacionDto() {
 	}
 
-	public TripulacionDto(UUID key, String descripcion, String estado) {
+	public TripulacionDto(UUID key, String descripcion) {
 		this.key = key;
 		// this.Sueldo = sueldo;
 		this.Descripcion = descripcion;
-		this.Estado = estado;
+		this.Estado = 1+"";
 		this.Tripulantes = new ArrayList<>();
 	}
 
