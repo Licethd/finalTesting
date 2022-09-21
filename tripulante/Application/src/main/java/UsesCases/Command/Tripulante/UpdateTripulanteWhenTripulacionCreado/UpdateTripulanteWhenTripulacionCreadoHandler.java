@@ -7,7 +7,7 @@ import Fourteam.mediator.Notification;
 import Fourteam.mediator.NotificationHandler;
 
 public class UpdateTripulanteWhenTripulacionCreadoHandler
-  implements NotificationHandler<ConfirmedDomainEvent<TripulacionRegistrado>> {
+  implements NotificationHandler<TripulacionRegistrado> {
 
   private ITripulanteRepository _tripulanteRepository;
 
@@ -24,7 +24,7 @@ public class UpdateTripulanteWhenTripulacionCreadoHandler
 //   }
 
   @Override
-  public void handle(ConfirmedDomainEvent<TripulacionRegistrado> event) {
+  public void handle(TripulacionRegistrado event) {
 
 	System.out.println(event);
 
