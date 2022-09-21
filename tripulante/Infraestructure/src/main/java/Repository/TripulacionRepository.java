@@ -24,7 +24,7 @@ public class TripulacionRepository implements ITripulacionRepository {
 	}
 
 	// @Override
-	// public Tripulacion FindByKeyTripulante(UUID keyTripulacion) throws Exception {
+	// public Tripulacion FindByKeyTripulante(UUID key) throws Exception {
 	// 	return _tripulacion.Single(obj -> obj.key.toString().equals(key.toString()));
 	// }
 

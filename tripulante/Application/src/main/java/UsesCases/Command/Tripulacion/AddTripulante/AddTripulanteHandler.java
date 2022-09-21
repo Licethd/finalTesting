@@ -54,8 +54,10 @@ public class AddTripulanteHandler
 		if (tripulante == null) {
 			throw new HttpException(
 					HttpStatus.BAD_REQUEST,
-					"Ttripulante no encontrado");
+					"Tripulante no encontrado");
 		}
+
+
 
 
 		tripulacion.agregarTripulante(tripulante);
