@@ -34,6 +34,7 @@ public class PublishIntegrationEventWhenTripulacionCreadoHandler
 			evento.keyTripulacion = tripulacion.key;
 			evento.estado = tripulacion.getEstado() + "";
 			evento.descripcion = tripulacion.getDescripcion();
+			// evento.tripulantes = new ArrayList<TripulanteDto>();
 			this.publishEndpoint.Publish(evento);
 		} catch (Exception e) {
 			e.printStackTrace();
