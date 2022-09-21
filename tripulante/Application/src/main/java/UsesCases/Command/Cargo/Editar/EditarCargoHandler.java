@@ -1,5 +1,6 @@
 package UsesCases.Command.Cargo.Editar;
 
+import Dto.Cargo.CargoDto;
 import Factories.ICargoFactory;
 import Factories.ITripulanteFactory;
 import Model.Tripulante.Cargo;
@@ -12,7 +13,7 @@ import Fourteam.http.HttpStatus;
 import Fourteam.mediator.RequestHandler;
 
 public class EditarCargoHandler
-	implements RequestHandler<EditarCargoCommand, Cargo> {
+	implements RequestHandler<EditarCargoCommand, CargoDto> {
 
 	private ICargoFactory _cargoFactory;
 	private ICargoRepository _cargoRepository;
@@ -29,7 +30,7 @@ public class EditarCargoHandler
 	}
 
 	@Override
-	public Cargo handle(EditarCargoCommand request)
+	public CargoDto handle(EditarCargoCommand request)
 		throws Exception {
 			Cargo cargo = _cargoRepository.FindByKey(
 			request.cargoDto.key
@@ -43,6 +44,7 @@ public class EditarCargoHandler
 		// cargo.setSueldo(request.cargoDto.Sueldo);
 		cargo.setDescripcion(request.cargoDto.Descripcion);
 		_cargoRepository.Update(cargo);
-		return cargo;
+		//return cargo;
+		return new CargoDto(cargo.key, cargo.getDescripcion());
 	}
 }

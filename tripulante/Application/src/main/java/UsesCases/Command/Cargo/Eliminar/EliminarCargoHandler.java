@@ -1,17 +1,16 @@
 package UsesCases.Command.Cargo.Eliminar;
 
+import java.util.UUID;
+
 import Factories.ICargoFactory;
-import Factories.ITripulanteFactory;
 import Model.Tripulante.Cargo;
-import Model.Tripulante.Tripulante;
 import Repositories.ICargoRepository;
-import Repositories.ITripulanteRepository;
 import Repositories.IUnitOfWork;
 import Fourteam.http.HttpStatus;
 import Fourteam.http.Exception.HttpException;
 import Fourteam.mediator.RequestHandler;
 
-public class EliminarCargoHandler implements RequestHandler<EliminarCargoCommand, Cargo> {
+public class EliminarCargoHandler implements RequestHandler<EliminarCargoCommand, UUID> {
 
     private ICargoFactory _cargoFactory;
     private ICargoRepository _cargoRepository;
@@ -25,13 +24,13 @@ public class EliminarCargoHandler implements RequestHandler<EliminarCargoCommand
     }
 
     @Override
-    public Cargo handle(EliminarCargoCommand request) throws Exception {
+    public UUID handle(EliminarCargoCommand request) throws Exception {
         Cargo cargo = _cargoRepository.FindByKey(request.cargo.key);
         if (cargo == null) {
             throw new HttpException(HttpStatus.BAD_REQUEST, "Cargo no encontrado");
         }
 
-        return _cargoRepository.Delete(cargo);
+        return _cargoRepository.Delete(cargo).key;
 
     }
 
