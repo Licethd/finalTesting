@@ -1,5 +1,7 @@
 package UsesCases.Command.Tripulacion.Eliminar;
 
+import java.util.UUID;
+
 import Factories.ICargoFactory;
 import Factories.ITripulacionFactory;
 import Factories.ITripulanteFactory;
@@ -14,7 +16,7 @@ import Fourteam.http.HttpStatus;
 import Fourteam.http.Exception.HttpException;
 import Fourteam.mediator.RequestHandler;
 
-public class EliminarTripulacionHandler implements RequestHandler<EliminarTripulacionCommand, Tripulacion> {
+public class EliminarTripulacionHandler implements RequestHandler<EliminarTripulacionCommand, UUID> {
 
     private ITripulacionFactory _tripulacionFactory;
     private ITripulacionRepository _tripulacionRepository;
@@ -28,13 +30,13 @@ public class EliminarTripulacionHandler implements RequestHandler<EliminarTripul
     }
 
     @Override
-    public Tripulacion handle(EliminarTripulacionCommand request) throws Exception {
+    public UUID handle(EliminarTripulacionCommand request) throws Exception {
         Tripulacion tripulacion = _tripulacionRepository.FindByKey(request.tripulacion.key);
         if (tripulacion == null) {
             throw new HttpException(HttpStatus.BAD_REQUEST, "Cargo no encontrado");
         }
 
-        return _tripulacionRepository.Delete(tripulacion);
+        return _tripulacionRepository.Delete(tripulacion).key;
 
     }
 

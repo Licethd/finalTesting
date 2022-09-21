@@ -1,5 +1,6 @@
 package UsesCases.Command.Tripulacion.Editar;
 
+import Dto.Tripulacion.TripulacionDto;
 import Factories.ICargoFactory;
 import Factories.ITripulacionFactory;
 import Factories.ITripulanteFactory;
@@ -15,7 +16,7 @@ import Fourteam.http.HttpStatus;
 import Fourteam.mediator.RequestHandler;
 
 public class EditarTripulacionHandler
-	implements RequestHandler<EditarTripulacionCommand, Tripulacion> {
+	implements RequestHandler<EditarTripulacionCommand, TripulacionDto> {
 
 	private ITripulacionFactory _tripulacionFactory;
 	private ITripulacionRepository _tripulacionRepository;
@@ -32,7 +33,7 @@ public class EditarTripulacionHandler
 	}
 
 	@Override
-	public Tripulacion handle(EditarTripulacionCommand request)
+	public TripulacionDto handle(EditarTripulacionCommand request)
 		throws Exception {
 			Tripulacion tripulacion = _tripulacionRepository.FindByKey(
 			request.tripulacionDto.key
@@ -46,6 +47,7 @@ public class EditarTripulacionHandler
 		// cargo.setSueldo(request.cargoDto.Sueldo);
 		tripulacion.setDescripcion(request.tripulacionDto.Descripcion);
 		_tripulacionRepository.Update(tripulacion);
-		return tripulacion;
+		//return tripulacion;
+		return new TripulacionDto(tripulacion.key, tripulacion.getDescripcion());
 	}
 }

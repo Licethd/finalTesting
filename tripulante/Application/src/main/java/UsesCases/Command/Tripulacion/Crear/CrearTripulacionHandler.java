@@ -1,5 +1,7 @@
 package UsesCases.Command.Tripulacion.Crear;
 
+import java.util.UUID;
+
 import Factories.ICargoFactory;
 import Factories.ITripulacionFactory;
 import Model.Tripulacion.Tripulacion;
@@ -7,10 +9,11 @@ import Model.Tripulante.Cargo;
 import Repositories.ICargoRepository;
 import Repositories.ITripulacionRepository;
 import Repositories.IUnitOfWork;
+import Fourteam.http.HttpStatus;
 import Fourteam.http.Exception.HttpException;
 import Fourteam.mediator.RequestHandler;
 
-public class CrearTripulacionHandler implements RequestHandler<CrearTripulacionCommand, Tripulacion> {
+public class CrearTripulacionHandler implements RequestHandler<CrearTripulacionCommand, UUID> {
 
 	private ITripulacionFactory _tripulacionFactory;
 	private ITripulacionRepository _tripulacionRepository;
@@ -24,8 +27,7 @@ public class CrearTripulacionHandler implements RequestHandler<CrearTripulacionC
 	}
 
 	@Override
-	public Tripulacion handle(CrearTripulacionCommand request) throws Exception {
-
+	public UUID handle(CrearTripulacionCommand request) throws Exception {
 
 
 		Tripulacion tripulacion = _tripulacionFactory.Create(request.tripulacionDto.Descripcion);
@@ -34,7 +36,7 @@ public class CrearTripulacionHandler implements RequestHandler<CrearTripulacionC
 
 		_tripulacionRepository.Create(tripulacion);
 		_unitOfWork.commit();
-		return tripulacion;
+		return tripulacion.key;
 	}
 
 }

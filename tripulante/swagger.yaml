@@ -2,6 +2,13 @@ servers:
 - {url: 'http://localhost:8080/api/'}
 openapi: 3.0.0
 paths:
+  /tripulante/:
+    get:
+      summary: /tripulante getAll
+      operationId: /tripulante_getAll
+      responses:
+        '200': {description: Response 200}
+      tags: [/tripulante]
   /tripulante/registro:
     post:
       summary: /tripulante register
@@ -13,13 +20,13 @@ paths:
       responses:
         '200': {description: Response 200}
       tags: [/tripulante]
-  /tripulante/:
+  /cargo/:
     get:
-      summary: /tripulante getAll
-      operationId: /tripulante_getAll
+      summary: /cargo getAll
+      operationId: /cargo_getAll
       responses:
         '200': {description: Response 200}
-      tags: [/tripulante]
+      tags: [/cargo]
   /cargo/registro:
     post:
       summary: /cargo register
@@ -28,13 +35,6 @@ paths:
           application/json:
             schema: {type: object}
       operationId: /cargo_register
-      responses:
-        '200': {description: Response 200}
-      tags: [/cargo]
-  /cargo/:
-    get:
-      summary: /cargo getAll
-      operationId: /cargo_getAll
       responses:
         '200': {description: Response 200}
       tags: [/cargo]

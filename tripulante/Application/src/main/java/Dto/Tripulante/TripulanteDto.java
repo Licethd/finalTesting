@@ -21,12 +21,12 @@ public class TripulanteDto {
     public TripulanteDto() {
     }
 
-    public TripulanteDto(UUID key,String nombre, String apellido, String emailAddress,String estado,String tipo,Double horasVuelo, Double nroMillas,  Cargo cargo) {
+    public TripulanteDto(UUID key,String nombre, String apellido, String emailAddress,String tipo,Double horasVuelo, Double nroMillas,  Cargo cargo) {
         Key = key;
         Nombre = nombre;
         Apellido = apellido;
         EmailAddress = emailAddress;
-        Estado = estado;
+        Estado = "1";
         Tipo = tipo;
 		HorasVuelo = horasVuelo;
 		NroMillas = nroMillas;

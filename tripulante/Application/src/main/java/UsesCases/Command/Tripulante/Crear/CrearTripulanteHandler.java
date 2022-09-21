@@ -1,5 +1,7 @@
 package UsesCases.Command.Tripulante.Crear;
 
+import java.util.UUID;
+
 import Factories.ITripulanteFactory;
 import Model.Tripulante.Cargo;
 import Model.Tripulante.Tripulante;
@@ -10,7 +12,7 @@ import Fourteam.http.HttpStatus;
 import Fourteam.http.Exception.HttpException;
 import Fourteam.mediator.RequestHandler;
 
-public class CrearTripulanteHandler implements RequestHandler<CrearTripulanteCommand, Tripulante> {
+public class CrearTripulanteHandler implements RequestHandler<CrearTripulanteCommand, UUID> {
 
 	private ITripulanteFactory _tripulanteFactory;
 	private ITripulanteRepository _tripulanteRepository;
@@ -29,7 +31,7 @@ public class CrearTripulanteHandler implements RequestHandler<CrearTripulanteCom
 	}
 
 	@Override
-	public Tripulante handle(CrearTripulanteCommand request) throws Exception {
+	public UUID handle(CrearTripulanteCommand request) throws Exception {
 
 		// Tripulante tripulante =
 		// _tripulanteFactory.Create(request.tripulanteDto.getNombre(),
@@ -51,7 +53,7 @@ public class CrearTripulanteHandler implements RequestHandler<CrearTripulanteCom
 
 		_tripulanteRepository.Create(tripulante);
 		_unitOfWork.commit();
-		return tripulante;
+		return tripulante.key;
 	}
 
 }

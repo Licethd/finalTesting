@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import Event.TripulacionChange;
 import core.ConfirmedDomainEvent;
 import Fourteam.massTransit.IPublishEndpoint;
-import Fourteam.mediator.Notification;
 import Fourteam.mediator.NotificationHandler;
 import Model.Tripulacion.Tripulacion;
 import Repositories.ITripulacionRepository;
@@ -25,18 +24,20 @@ public class PublishIntegrationEventWhenTripulacionChangeHandler
 	}
 
 	@Override
-	public void handle(Notification notification) {
-		ConfirmedDomainEvent event = (ConfirmedDomainEvent) notification;
+	public void handle(ConfirmedDomainEvent<TripulacionChange> event) {
+
 		try {
 			TripulacionChange tripulacionChange = (TripulacionChange) event.DomainEvent;
 			Tripulacion tripulacion = _tripulacionRepository.FindByKey(tripulacionChange.KeyTripulacion);
 			IntegrationEvents.TripulacionChange evento = new IntegrationEvents.TripulacionChange();
-			evento.Key = tripulacion.key;
+			evento.keyTripulacion = tripulacion.key;
+			evento.estado = tripulacion.getEstado() + "";
 			evento.descripcion = tripulacion.getDescripcion();
 			List<IntegrationEvents.dto.TripulanteDto> arrTripulantes = new ArrayList<>();
 			tripulacion.Tripulantes.iterator().forEachRemaining(tripulante -> {
 				IntegrationEvents.dto.TripulanteDto tripulanteDto = new IntegrationEvents.dto.TripulanteDto();
 				tripulanteDto.key = tripulante.key;
+				tripulanteDto.estado = tripulante.getEstado() + "";
 				tripulanteDto.nombre = tripulante.getNombre();
 				tripulanteDto.apellido = tripulante.getApellido();
 				tripulanteDto.tipo = tripulante.getTipo();

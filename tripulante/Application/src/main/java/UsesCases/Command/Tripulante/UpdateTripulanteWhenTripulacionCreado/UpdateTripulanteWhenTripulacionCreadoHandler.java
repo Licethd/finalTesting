@@ -2,11 +2,12 @@ package UsesCases.Command.Tripulante.UpdateTripulanteWhenTripulacionCreado;
 
 import Event.TripulacionRegistrado;
 import Repositories.ITripulanteRepository;
+import core.ConfirmedDomainEvent;
 import Fourteam.mediator.Notification;
 import Fourteam.mediator.NotificationHandler;
 
 public class UpdateTripulanteWhenTripulacionCreadoHandler
-  implements NotificationHandler<TripulacionRegistrado> {
+  implements NotificationHandler<ConfirmedDomainEvent<TripulacionRegistrado>> {
 
   private ITripulanteRepository _tripulanteRepository;
 
@@ -17,8 +18,15 @@ public class UpdateTripulanteWhenTripulacionCreadoHandler
     this._tripulanteRepository = tripulanteRepository;
   }
 
+//   @Override
+//   public void handle(Notification notification) {
+//     System.out.println(notification);
+//   }
+
   @Override
-  public void handle(Notification notification) {
-    System.out.println(notification);
-  }
+  public void handle(ConfirmedDomainEvent<TripulacionRegistrado> event) {
+
+	System.out.println(event);
+
+}
 }

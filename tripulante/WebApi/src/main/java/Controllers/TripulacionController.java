@@ -12,6 +12,7 @@ import UsesCases.Command.Tripulacion.Eliminar.EliminarTripulacionCommand;
 import UsesCases.Queries.Tripulacion.GetAll.GetAllTripulacionQuery;
 import UsesCases.Queries.Tripulacion.GetByKey.GetTripulacionByKeyQuery;
 import Model.Tripulacion.Tripulacion;
+import Fourteam.http.Exception.HttpException;
 import Fourteam.http.annotation.*;
 import Fourteam.mediator.Mediator;
 import Fourteam.mediator.Response;
@@ -20,52 +21,69 @@ import Fourteam.mediator.Response;
 @RequestMapping("/tripulacion")
 public class TripulacionController {
 
-    private Mediator _mediator;
+	private Mediator _mediator;
 
-    public TripulacionController(Mediator mediator) {
-        this._mediator = mediator;
-    }
+	public TripulacionController(Mediator mediator) {
+		this._mediator = mediator;
+	}
 
-
-
-    @GetMapping("/")
-    public Response<List<Tripulacion>> getAll() throws Exception {
-        return _mediator.send(new GetAllTripulacionQuery());
-    }
-
-    @GetMapping("/{key}")
-    public Response<TripulacionDto> getByKey(@PathVariable GetTripulacionByKeyQuery request) throws Exception {
-        return _mediator.send(request);
-    }
+	@GetMapping("/")
+	public List<TripulacionDto> getAll() throws HttpException {
+		try {
+			Response<List<TripulacionDto>> lista = _mediator.send(new GetAllTripulacionQuery());
+			return lista.data;
+		} catch (Exception e) {
+			throw (HttpException) e.getCause();
+		}
+	}
 
 
-    @PostMapping("/registro")
-    public Response<Tripulacion> register(@RequestBody CrearTripulacionCommand tripulacion) throws Exception {
+	@GetMapping("/{key}")
+	public Response<TripulacionDto> getByKey(@PathVariable GetTripulacionByKeyQuery request)
+			throws HttpException {
+		try {
+			return _mediator.send(request);
+		} catch (Exception e) {
+			throw (HttpException) e.getCause();
+		}
+	}
 
 
-       return _mediator.send(tripulacion);
-    }
+	@PostMapping("/registro")
+	public UUID register(@RequestBody CrearTripulacionCommand tripulacion) throws Exception {
 
-    @PutMapping("/{key}")
-    public Response<Tripulacion> edit(@RequestBody TripulacionDto tripulacion, @PathVariable EditarTripulacionCommand request) throws Exception {
-        // request.cargoDto.Sueldo = cargo.getSueldo();
-        request.tripulacionDto.Descripcion = tripulacion.getDescripcion();
-        return _mediator.send(request);
-    }
+		return (UUID) _mediator.send(tripulacion).data;
+		// return _mediator.send(tripulacion);
+	}
+
+	@PutMapping("/{key}")
+	public TripulacionDto edit(
+			@RequestBody Tripulacion tripulacion,
+			@PathVariable EditarTripulacionCommand request) throws HttpException {
+		request.tripulacionDto.Descripcion = tripulacion.getDescripcion();
+		try {
+			return (TripulacionDto) _mediator.send(request).data;
+		} catch (Exception e) {
+			throw (HttpException) e.getCause();
+		}
+	}
 
 	@PutMapping("/addTripulante/{key}")
 	public UUID addTripulante(
-	  @RequestBody TripulanteDto tripulanteDto,
-	  @PathVariable AddTripulanteCommand request
-	) throws Exception {
-	  request.setTripulante(tripulanteDto);
-	  return (UUID) _mediator.send(request).data;
+			@RequestBody TripulanteDto tripulanteDto,
+			@PathVariable AddTripulanteCommand request) throws Exception {
+		request.setTripulante(tripulanteDto);
+		return (UUID) _mediator.send(request).data;
 	}
 
-    @DeleteMapping("/{key}")
-    public Response<Tripulacion> delete(@PathVariable EliminarTripulacionCommand request) throws Exception {
-        return _mediator.send(request);
-    }
+	@DeleteMapping("/{key}")
+	public UUID delete(@PathVariable EliminarTripulacionCommand request) throws HttpException {
+		try {
+			return (UUID) _mediator.send(request).data;
+		} catch (Exception e) {
+			throw (HttpException) e.getCause();
+		}
+	}
 
 
 }
