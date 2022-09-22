@@ -57,8 +57,12 @@ public class AddTripulanteHandler
 					"Tripulante no encontrado");
 		}
 
-
-
+		Tripulacion tripulanteValidar = _tripulacionRepository.FindByTripulante(tripulacion, request.Tripulante.Key);
+		if (tripulanteValidar != null) {
+			throw new HttpException(
+					HttpStatus.BAD_REQUEST,
+					"Tripulante ya existe");
+		}
 
 		tripulacion.agregarTripulante(tripulante);
 		_tripulacionRepository.Update(tripulacion);

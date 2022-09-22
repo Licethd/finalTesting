@@ -15,5 +15,5 @@ public interface ITripulacionRepository extends IRepository<Tripulacion, UUID> {
 
     public Tripulacion Update(Tripulacion tripulacion) throws Exception;
 
-	// public Tripulacion FindByTripulante(UUID key) throws Exception;
+	 public Tripulacion FindByTripulante(Tripulacion tripulacion, UUID key) throws Exception;
 }

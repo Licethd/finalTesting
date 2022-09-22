@@ -46,6 +46,8 @@ public class EditarTripulacionHandler
 		}
 		// cargo.setSueldo(request.cargoDto.Sueldo);
 		tripulacion.setDescripcion(request.tripulacionDto.Descripcion);
+		tripulacion.setEstado(Integer.parseInt(request.tripulacionDto.Estado));
+
 		_tripulacionRepository.Update(tripulacion);
 		//return tripulacion;
 		return new TripulacionDto(tripulacion.key, tripulacion.getDescripcion());

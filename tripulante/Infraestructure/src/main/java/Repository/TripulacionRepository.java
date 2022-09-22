@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import Model.Tripulacion.Tripulacion;
 import Model.Tripulante.Cargo;
+import Model.Tripulante.Tripulante;
 import Repositories.ICargoRepository;
 import Repositories.ITripulacionRepository;
 import Context.IWriteDbContext;
@@ -23,10 +24,18 @@ public class TripulacionRepository implements ITripulacionRepository {
 		return _tripulacion.Single(obj -> obj.key.toString().equals(key.toString()));
 	}
 
-	// @Override
-	// public Tripulacion FindByKeyTripulante(UUID key) throws Exception {
-	// 	return _tripulacion.Single(obj -> obj.key.toString().equals(key.toString()));
-	// }
+	@Override
+	public Tripulacion FindByTripulante(Tripulacion object, UUID key) throws Exception {
+		return _tripulacion.Single(obj ->
+		obj.key.toString().equals(object.key.toString()) &&
+		obj.Tripulantes
+		  .stream()
+		  .filter(tripulante -> tripulante.key.toString().equals(key.toString()))
+		  .findAny()
+		  .orElse(null) !=
+		null
+	  );
+	}
 
 	@Override
 	public void Create(Tripulacion obj) throws Exception {
