@@ -58,6 +58,6 @@ paths:
         name: key
         required: true
       tags: [/tripulante]
-info: {description: FuourTeam API description, title: FourTeam API, version: 1.0.1}
+info: {description: FuourTeam API description, title: FourTeam API, version: 4.0.0}
 tags:
 - {name: /tripulante, description: /tripulante_descripcion}
