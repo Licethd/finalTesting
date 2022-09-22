@@ -19,4 +19,3 @@ echo "" >> META-INF/MANIFEST.MF
 cd ../
 jar cfM "$name.jar" -C bin/ .  # //TODOD  -C classPath
 rm -fr bin
-

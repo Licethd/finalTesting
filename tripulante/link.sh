@@ -1,9 +1,6 @@
 #!/bin/bash
 
-ARTIFACT_ID="aeronave"
-GROUP_ID="dmsnur"
-
-GITPATH="/Users/rickypazd/Documents/GitHub"
+GITPATH="/Users/Liceth Flores/Documents/GitHub"
 CURRENT="${GITPATH}/Tripulante/tripulante"
 
 rm -fr Fourteam
@@ -17,8 +14,8 @@ cat > "${CURRENT}/Fourteam/pom.xml" << EOF
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <artifactId>${ARTIFACT_ID}</artifactId>
-    <groupId>${GROUP_ID}</groupId>
+    <artifactId>tripulante</artifactId>
+    <groupId>dmsnur</groupId>
     <version>1.0</version>
   </parent>
 
@@ -78,8 +75,8 @@ cat > "${CURRENT}/SharedKernel/pom.xml" << EOF
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <artifactId>${ARTIFACT_ID}</artifactId>
-    <groupId>${GROUP_ID}</groupId>
+    <artifactId>tripulante</artifactId>
+    <groupId>dmsnur</groupId>
     <version>1.0</version>
   </parent>
 
