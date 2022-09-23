@@ -1,5 +1,7 @@
 package UsesCases.Command.Tripulante.Eliminar;
 
+import java.util.UUID;
+
 import Factories.ITripulanteFactory;
 import Model.Tripulante.Tripulante;
 import Repositories.ITripulanteRepository;
@@ -8,7 +10,7 @@ import Fourteam.http.HttpStatus;
 import Fourteam.http.Exception.HttpException;
 import Fourteam.mediator.RequestHandler;
 
-public class EliminarTripulanteHandler implements RequestHandler<EliminarTripulanteCommand, Tripulante> {
+public class EliminarTripulanteHandler implements RequestHandler<EliminarTripulanteCommand, UUID> {
 
     private ITripulanteFactory _tripulanteFactory;
     private ITripulanteRepository _tripulanteRepository;
@@ -22,13 +24,13 @@ public class EliminarTripulanteHandler implements RequestHandler<EliminarTripula
     }
 
     @Override
-    public Tripulante handle(EliminarTripulanteCommand request) throws Exception {
+    public UUID handle(EliminarTripulanteCommand request) throws Exception {
         Tripulante tripulante = _tripulanteRepository.FindByKey(request.tripulante.Key);
         if (tripulante == null) {
             throw new HttpException(HttpStatus.BAD_REQUEST, "Tripulante no encontrado");
         }
 
-        return _tripulanteRepository.Delete(tripulante);
+        return _tripulanteRepository.Delete(tripulante).key;
 
     }
 
