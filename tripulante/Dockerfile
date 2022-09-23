@@ -24,7 +24,7 @@ EXPOSE 8080
 
 COPY . .
 
-RUN ./compile.sh
+RUN bash compile.sh
 
 CMD ["java", "-jar" , "app.jar"]
 

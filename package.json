@@ -9,15 +9,15 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Licethd/tripulanteM6.git"
+		"url": "git+https://github.com/dmsfourteamNur/Tripulante.git"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/Licethd/tripulanteM6/issues"
+		"url": "https://github.com/dmsfourteamNur/Tripulante/issues"
 	},
-	"homepage": "https://github.com/Licethd/tripulanteM6#readme",
+	"homepage": "https://github.com/dmsfourteamNur/Tripulante#readme",
 	"devDependencies": {
 		"husky": "^8.0.0",
 		"lint-staged": "^13.0.3"
