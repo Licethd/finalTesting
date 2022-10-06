@@ -10,7 +10,7 @@ public class EliminarTripulanteCommand implements Request<TripulanteDto> {
     TripulanteDto tripulante;
     public EliminarTripulanteCommand(UUID key) {
         this.tripulante = new TripulanteDto();
-        this.tripulante.Key = key;
+        this.tripulante.key = key;
     }
 
 }

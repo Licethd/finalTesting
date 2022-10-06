@@ -1,5 +1,7 @@
 package Factories;
 
+import java.util.UUID;
+
 import Model.Tripulante.Cargo;
 import Model.Tripulante.Tripulante;
 
@@ -16,7 +18,7 @@ public class TripulanteFactory implements ITripulanteFactory {
 	@Override
 	public Tripulante Create(String nombre, String apellido, String emailAddress, String estado, String tipo,
 			Double horasVuelo, Double nroMillas,
-			Cargo cargo) {
+			UUID keyCargo) {
 
 
 		// switch (nombre) {
@@ -27,7 +29,7 @@ public class TripulanteFactory implements ITripulanteFactory {
 		// default:
 		// return null;
 		// }
-		return new Tripulante(nombre, apellido, emailAddress, tipo, horasVuelo, nroMillas, cargo);
+		return new Tripulante(nombre, apellido, emailAddress, tipo, horasVuelo, nroMillas, keyCargo);
 	}
 
 }

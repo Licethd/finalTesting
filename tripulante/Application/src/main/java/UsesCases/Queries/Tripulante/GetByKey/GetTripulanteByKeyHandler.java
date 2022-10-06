@@ -21,7 +21,7 @@ public class GetTripulanteByKeyHandler implements RequestHandler<GetTripulanteBy
             throw new HttpException(HttpStatus.BAD_REQUEST, "Tripulante no encontradooo");
         }
         TripulanteDto tripulanteDto =  new TripulanteDto();
-        tripulanteDto.Key = tripulante.key;
+        tripulanteDto.key = tripulante.key;
         tripulanteDto.Nombre = tripulante.getNombre();
         tripulanteDto.Apellido = tripulante.getApellido();
         tripulanteDto.EmailAddress = tripulante.getEmailAddress();
@@ -29,7 +29,7 @@ public class GetTripulanteByKeyHandler implements RequestHandler<GetTripulanteBy
         tripulanteDto.Tipo = tripulante.getTipo();
         tripulanteDto.HorasVuelo = tripulante.getHorasVuelo();
         tripulanteDto.NroMillas = tripulante.getNroMillas();
-        tripulanteDto.Cargo = tripulante.getCargo();
+        tripulanteDto.KeyCargo = tripulante.getKeyCargo();
 
         return tripulanteDto;
     }

@@ -25,7 +25,7 @@ public class EliminarTripulanteHandler implements RequestHandler<EliminarTripula
 
     @Override
     public UUID handle(EliminarTripulanteCommand request) throws Exception {
-        Tripulante tripulante = _tripulanteRepository.FindByKey(request.tripulante.Key);
+        Tripulante tripulante = _tripulanteRepository.FindByKey(request.tripulante.key);
         if (tripulante == null) {
             throw new HttpException(HttpStatus.BAD_REQUEST, "Tripulante no encontrado");
         }

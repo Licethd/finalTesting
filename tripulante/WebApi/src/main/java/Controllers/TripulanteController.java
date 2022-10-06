@@ -26,31 +26,25 @@ public class TripulanteController {
 	}
 
 	@GetMapping("/")
-	public List<TripulanteDto> getAll() throws HttpException {
-		try {
-			Response<List<TripulanteDto>> lista = _mediator.send(new GetAllTripulanteQuery());
-			return lista.data;
-		} catch (Exception e) {
-			throw (HttpException) e.getCause();
-		}
+	public List<TripulanteDto> getAll() throws Exception {
+		Response<List<TripulanteDto>> lista = _mediator.send(new GetAllTripulanteQuery());
+		return lista.data;
+		// try {
+		// Response<List<TripulanteDto>> lista = _mediator.send(new
+		// GetAllTripulanteQuery());
+		// return lista.data;
+		// } catch (Exception e) {
+		// throw (HttpException) e.getCause();
+		// }
 	}
-	// public Response<List<TripulanteDto>> getAll() throws Exception {
-	// return _mediator.send(new GetAllTripulanteQuery());
-	// }
 
 	@GetMapping("/{key}")
-	public Response<TripulanteDto> getByKey(@PathVariable GetTripulanteByKeyQuery request)
-			throws HttpException {
-		try {
-			return _mediator.send(request);
-		} catch (Exception e) {
-			throw (HttpException) e.getCause();
-		}
-	}
 	// public Response<TripulanteDto> getByKey(@PathVariable GetTripulanteByKeyQuery
-	// request) throws Exception {
-	// return _mediator.send(request);
-	// }
+	// request)
+	public TripulanteDto getByKey(@PathVariable GetTripulanteByKeyQuery request)
+			throws Exception {
+		return (TripulanteDto) _mediator.send(request).data;
+	}
 
 	@PostMapping("/registro")
 	public UUID register(@RequestBody CrearTripulanteCommand tripulante) throws Exception {
@@ -58,16 +52,12 @@ public class TripulanteController {
 		return (UUID) _mediator.send(tripulante).data;
 		// return _mediator.send(tripulacion);
 	}
-	// public Response<Tripulante> register(@RequestBody CrearTripulanteCommand
-	// tripulante) throws Exception {
-	// return _mediator.send(tripulante);
-	// }
 
 	@PutMapping("/{key}")
 	public TripulanteDto edit(
 			@RequestBody Tripulante tripulante,
-			@PathVariable EditarTripulanteCommand request) throws HttpException {
-		request.tripulanteDto.Key = tripulante.getKey();
+			@PathVariable EditarTripulanteCommand request) throws Exception {
+		request.tripulanteDto.key = tripulante.getKey();
 		request.tripulanteDto.Nombre = tripulante.getNombre();
 		request.tripulanteDto.Apellido = tripulante.getApellido();
 		request.tripulanteDto.EmailAddress = tripulante.getEmailAddress();
@@ -75,35 +65,24 @@ public class TripulanteController {
 		request.tripulanteDto.Tipo = tripulante.getTipo();
 		request.tripulanteDto.HorasVuelo = tripulante.getHorasVuelo();
 		request.tripulanteDto.NroMillas = tripulante.getNroMillas();
-		request.tripulanteDto.Cargo = tripulante.getCargo();
-		try {
-			return (TripulanteDto) _mediator.send(request).data;
-		} catch (Exception e) {
-			throw (HttpException) e.getCause();
-		}
+		request.tripulanteDto.KeyCargo = tripulante.getKeyCargo();
+
+		return (TripulanteDto) _mediator.send(request).data;
+		// try {
+		// return (TripulanteDto) _mediator.send(request).data;
+		// } catch (Exception e) {
+		// throw (HttpException) e.getCause();
+		// }
 	}
-	// public Response<Tripulante> edit(@RequestBody TripulanteDto tripulante,
-	// @PathVariable EditarTripulanteCommand request) throws Exception {
-	// request.tripulanteDto.Nombre = tripulante.getNombre();
-	// request.tripulanteDto.Apellido = tripulante.getApellido();
-	// request.tripulanteDto.EmailAddress = tripulante.getEmailAddress();
-	// request.tripulanteDto.Estado = tripulante.getEstado();
-	// request.tripulanteDto.Tipo = tripulante.getTipo();
-	// request.tripulanteDto.HorasVuelo = tripulante.getHorasVuelo();
-	// request.tripulanteDto.NroMillas = tripulante.getNroMillas();
-	// request.tripulanteDto.Cargo = tripulante.getCargo();
-	// return _mediator.send(request);
-	// }
 
 	@DeleteMapping("/{key}")
-	public UUID delete(@PathVariable EliminarTripulanteCommand request) throws HttpException {
-		try {
-			return (UUID) _mediator.send(request).data;
-		} catch (Exception e) {
-			throw (HttpException) e.getCause();
-		}
+	public UUID delete(@PathVariable EliminarTripulanteCommand request) throws Exception {
+		return (UUID) _mediator.send(request).data;
+		// try {
+		// return (UUID) _mediator.send(request).data;
+		// } catch (Exception e) {
+		// throw (HttpException) e.getCause();
+		// }
 	}
-	// public Response<Tripulante> delete(@PathVariable EliminarTripulanteCommand request) throws Exception {
-	// 	return _mediator.send(request);
-	// }
+
 }

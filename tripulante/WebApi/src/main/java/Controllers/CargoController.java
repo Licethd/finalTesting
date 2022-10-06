@@ -43,7 +43,7 @@ public class CargoController {
       throws Exception {
     return (CargoDto) _mediator.send(request).data;
   }
-  
+
 
 
     @PostMapping("/registro")
@@ -61,7 +61,7 @@ public class CargoController {
       request.cargoDto.Descripcion = cargo.getDescripcion();
       return (CargoDto) _mediator.send(request).data;
     }
-  
+
     // public Response<Cargo> edit(@RequestBody CargoDto cargo, @PathVariable EditarCargoCommand request) throws Exception {
     //     // request.cargoDto.Sueldo = cargo.getSueldo();
     //     request.cargoDto.Descripcion = cargo.getDescripcion();

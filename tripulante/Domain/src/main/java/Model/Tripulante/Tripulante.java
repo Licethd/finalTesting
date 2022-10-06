@@ -15,7 +15,7 @@ public class Tripulante extends AggregateRoot<UUID> {
 	private Double HorasVuelo;
 	private Double NroMillas;
 
-	Cargo Cargo;
+	UUID KeyCargo;
 	// private Tierra cargo_tierra;
 	// private Aire cargo_aire;
 
@@ -29,7 +29,7 @@ public class Tripulante extends AggregateRoot<UUID> {
 		String tipo,
 		Double horasVuelo,
 		Double nroMillas,
-		Cargo cargo
+		UUID keyCargo
 	) {
 		key = UUID.randomUUID();
 		this.Nombre = nombre;
@@ -39,7 +39,7 @@ public class Tripulante extends AggregateRoot<UUID> {
 		this.Tipo = tipo;
 		this.HorasVuelo = horasVuelo;
 		this.NroMillas = nroMillas;
-		this.Cargo = cargo;
+		this.KeyCargo = keyCargo;
 	}
 
 	// public Tripulante(
@@ -135,11 +135,11 @@ public class Tripulante extends AggregateRoot<UUID> {
 
 
 
-	public Cargo getCargo() {
-		return Cargo;
+	public UUID getKeyCargo() {
+		return KeyCargo;
 	}
 
-	public void setCargo(Cargo cargo) {
-		this.Cargo = cargo;
+	public void setKeyCargo(UUID keyCargo) {
+		this.KeyCargo = keyCargo;
 	}
 }

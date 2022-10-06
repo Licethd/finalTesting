@@ -38,7 +38,7 @@ public class CrearTripulanteHandler implements RequestHandler<CrearTripulanteCom
 		// request.tripulanteDto.getApellido(), request.tripulanteDto.getEmailAddress(),
 		// request.tripulanteDto.getCargo());
 
-		Cargo cargo = _cargoRepository.FindByKey(request.tripulanteDto.Cargo.key);
+		Cargo cargo = _cargoRepository.FindByKey(request.tripulanteDto.KeyCargo);
 		if (cargo == null) {
 			throw new HttpException(
 					HttpStatus.BAD_REQUEST,
@@ -47,7 +47,7 @@ public class CrearTripulanteHandler implements RequestHandler<CrearTripulanteCom
 
 		Tripulante tripulante = _tripulanteFactory.Create(request.tripulanteDto.Nombre, request.tripulanteDto.Apellido,
 				request.tripulanteDto.EmailAddress, request.tripulanteDto.Estado, request.tripulanteDto.Tipo,
-				request.tripulanteDto.HorasVuelo, request.tripulanteDto.NroMillas, cargo);
+				request.tripulanteDto.HorasVuelo, request.tripulanteDto.NroMillas, cargo.key);
 
 		tripulante.eventCreado();
 

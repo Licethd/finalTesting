@@ -30,7 +30,7 @@ public class GetAllTripulanteHandler implements RequestHandler<GetAllTripulanteQ
 			tripulante_dto.setTipo(tripulante.getTipo());
 			tripulante_dto.setHorasVuelo(tripulante.getHorasVuelo());
 			tripulante_dto.setNroMillas(tripulante.getNroMillas());
-			tripulante_dto.setCargo(tripulante.getCargo());
+			tripulante_dto.setKeyCargo(tripulante.getKeyCargo());
 		  resp.add(tripulante_dto);
 
 		}

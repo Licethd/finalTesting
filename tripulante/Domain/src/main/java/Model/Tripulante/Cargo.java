@@ -9,7 +9,7 @@ import core.Entity;
 public class Cargo extends Entity<UUID> {
 	// public abstract class Cargo extends Tripulante {
 	// private UUID key;
-	private String descripcion;
+	private String Descripcion;
 	private Double sueldo;
 	// private Date fecha_ingreso;
 
@@ -19,7 +19,7 @@ public class Cargo extends Entity<UUID> {
 
 	public Cargo( String descripcion) {
 		key = UUID.randomUUID();
-		this.descripcion = descripcion;
+		this.Descripcion = descripcion;
 		// this.sueldo = sueldo;
 	}
 
@@ -41,11 +41,11 @@ public class Cargo extends Entity<UUID> {
 	// }
 
 	public String getDescripcion() {
-		return descripcion;
+		return Descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+		this.Descripcion = descripcion;
 	}
 
 	// @Override

@@ -30,7 +30,7 @@ public class EditarTripulanteHandler
 	public TripulanteDto handle(EditarTripulanteCommand request)
 		throws Exception {
 		Tripulante tripulante = _tripulanteRepository.FindByKey(
-			request.tripulanteDto.Key
+			request.tripulanteDto.key
 		);
 		if (tripulante == null) {
 			throw new HttpException(
@@ -45,9 +45,9 @@ public class EditarTripulanteHandler
 		tripulante.setTipo(request.tripulanteDto.Tipo);
 		tripulante.setHorasVuelo(request.tripulanteDto.HorasVuelo);
 		tripulante.setNroMillas(request.tripulanteDto.NroMillas);
-		tripulante.setCargo(request.tripulanteDto.Cargo);
+		tripulante.setKeyCargo(request.tripulanteDto.KeyCargo);
 		_tripulanteRepository.Update(tripulante);
 		// return tripulante;
-		return new TripulanteDto(tripulante.key, tripulante.getNombre(), tripulante.getApellido(), tripulante.getEmailAddress(), tripulante.getTipo(), tripulante.getHorasVuelo(), tripulante.getNroMillas(),tripulante.getCargo());
+		return new TripulanteDto(tripulante.key, tripulante.getNombre(), tripulante.getApellido(), tripulante.getEmailAddress(), tripulante.getTipo(), tripulante.getHorasVuelo(), tripulante.getNroMillas(),tripulante.getKeyCargo());
 	}
 }

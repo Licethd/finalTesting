@@ -50,14 +50,14 @@ public class AddTripulanteHandler
 					"Tripulacion no encontrado");
 		}
 
-		Tripulante tripulante = _tripulanteRepository.FindByKey(request.Tripulante.Key);
+		Tripulante tripulante = _tripulanteRepository.FindByKey(request.Tripulante.key);
 		if (tripulante == null) {
 			throw new HttpException(
 					HttpStatus.BAD_REQUEST,
 					"Tripulante no encontrado");
 		}
 
-		Tripulacion tripulanteValidar = _tripulacionRepository.FindByTripulante(tripulacion, request.Tripulante.Key);
+		Tripulacion tripulanteValidar = _tripulacionRepository.FindByTripulante(tripulacion, request.Tripulante.key);
 		if (tripulanteValidar != null) {
 			throw new HttpException(
 					HttpStatus.BAD_REQUEST,

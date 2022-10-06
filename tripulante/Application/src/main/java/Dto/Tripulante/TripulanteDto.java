@@ -6,7 +6,7 @@ import java.util.UUID;
 import Model.Tripulante.Cargo;
 
 public class TripulanteDto {
-    public UUID Key;
+    public UUID key;
     public String Nombre;
     public String Apellido;
     public String EmailAddress;
@@ -16,13 +16,13 @@ public class TripulanteDto {
 
 
     public Double NroMillas;
-    public Cargo Cargo;
+    public UUID KeyCargo;
 
     public TripulanteDto() {
     }
 
-    public TripulanteDto(UUID key,String nombre, String apellido, String emailAddress,String tipo,Double horasVuelo, Double nroMillas,  Cargo cargo) {
-        Key = key;
+    public TripulanteDto(UUID key,String nombre, String apellido, String emailAddress,String tipo,Double horasVuelo, Double nroMillas,  UUID keyCargo) {
+        this.key = key;
         Nombre = nombre;
         Apellido = apellido;
         EmailAddress = emailAddress;
@@ -30,18 +30,18 @@ public class TripulanteDto {
         Tipo = tipo;
 		HorasVuelo = horasVuelo;
 		NroMillas = nroMillas;
-        Cargo = cargo;
+        KeyCargo = keyCargo;
 
 
     }
 
 
     public void setKey(UUID key) {
-        this.Key = key;
+        this.key = key;
     }
 
     public UUID getKey() {
-        return Key;
+        return key;
     }
 
     public String getNombre() {
@@ -73,16 +73,16 @@ public class TripulanteDto {
     }
 
     public void setEstado(String estado) {
-        Nombre = estado;
+        Estado = estado;
     }
 
 
-    public Cargo getCargo() {
-        return Cargo;
+    public UUID getKeyCargo() {
+        return KeyCargo;
     }
 
-    public void setCargo(Cargo cargo) {
-        Cargo = cargo;
+    public void setKeyCargo(UUID keyCargo) {
+        KeyCargo = keyCargo;
     }
 
 	public String getTipo() {

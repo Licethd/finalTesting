@@ -9,6 +9,8 @@ import core.ConfirmedDomainEvent;
 import Fourteam.massTransit.IPublishEndpoint;
 import Fourteam.mediator.NotificationHandler;
 import Model.Tripulacion.Tripulacion;
+import Model.Tripulante.Cargo;
+import Repositories.ICargoRepository;
 import Repositories.ITripulacionRepository;
 
 public class PublishIntegrationEventWhenTripulacionChangeHandler
@@ -16,11 +18,13 @@ public class PublishIntegrationEventWhenTripulacionChangeHandler
 
 	private IPublishEndpoint publishEndpoint;
 	private ITripulacionRepository _tripulacionRepository;
+	private ICargoRepository _cargoRepository;
 
 	public PublishIntegrationEventWhenTripulacionChangeHandler(IPublishEndpoint publishEndpoint,
-			ITripulacionRepository tripulacionRepository) {
+			ITripulacionRepository tripulacionRepository, ICargoRepository cargoRepository) {
 		this.publishEndpoint = publishEndpoint;
 		this._tripulacionRepository = tripulacionRepository;
+		this._cargoRepository = cargoRepository;
 	}
 
 	@Override
@@ -42,7 +46,14 @@ public class PublishIntegrationEventWhenTripulacionChangeHandler
 				tripulanteDto.apellido = tripulante.getApellido();
 				tripulanteDto.tipo = tripulante.getTipo();
 
-				tripulanteDto.setCargo(tripulante.getCargo().getDescripcion());
+				try {
+					Cargo cargo = _cargoRepository.FindByKey(tripulante.getKeyCargo());
+					tripulanteDto.setCargo(cargo.getDescripcion());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 				arrTripulantes.add(tripulanteDto);
 			});
 			evento.tripulantes = arrTripulantes;
