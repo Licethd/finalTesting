@@ -17,7 +17,7 @@ public class Infraestructure {
 		IServiceCollection.AddScoped(ICargoRepository.class, CargoRepository.class);
 		IServiceCollection.AddScoped(ITripulacionRepository.class, TripulacionRepository.class);
 		Application.AddApplication();
-		// AddRabbitMq();
+		AddRabbitMq();
 	}
 
 	private static void AddRabbitMq() {
