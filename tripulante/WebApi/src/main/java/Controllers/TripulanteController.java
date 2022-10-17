@@ -57,7 +57,6 @@ public class TripulanteController {
 	public TripulanteDto edit(
 			@RequestBody Tripulante tripulante,
 			@PathVariable EditarTripulanteCommand request) throws Exception {
-		request.tripulanteDto.key = tripulante.getKey();
 		request.tripulanteDto.Nombre = tripulante.getNombre();
 		request.tripulanteDto.Apellido = tripulante.getApellido();
 		request.tripulanteDto.EmailAddress = tripulante.getEmailAddress();
