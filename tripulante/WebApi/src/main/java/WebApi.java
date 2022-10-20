@@ -5,18 +5,13 @@ import Fourteam.config.Config;
 import Fourteam.http.Rest;
 
 public class WebApi {
+	//prueba
 
-	public static void AddControllers() {
-		// prueba de hoy hoy
-		//dsfsdf
-		//dsfsdf
-
-		Rest.addController(TripulanteController.class);
+					public static void AddControllers() {Rest.addController(TripulanteController.class);
 		Rest.addController(CargoController.class);
-		Rest.addController(TripulacionController.class);
+						Rest.addController(TripulacionController.class);
 
-		Rest.start(Integer.parseInt(Config.getProperty("http.port")));
-		Rest.createSwagger();
-	}
+									Rest.start(Integer.parseInt(Config.getProperty("http.port")));
+		Rest.createSwagger();}
 
 }
