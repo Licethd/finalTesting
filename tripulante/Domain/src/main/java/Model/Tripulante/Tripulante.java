@@ -16,6 +16,7 @@ public class Tripulante extends AggregateRoot<UUID> {
 	private Double NroMillas;
 
 	UUID KeyCargo;
+
 	// private Tierra cargo_tierra;
 	// private Aire cargo_aire;
 
@@ -108,7 +109,6 @@ public class Tripulante extends AggregateRoot<UUID> {
 		this.Estado = estado;
 	}
 
-
 	public String getTipo() {
 		return this.Tipo;
 	}
@@ -132,8 +132,6 @@ public class Tripulante extends AggregateRoot<UUID> {
 	public void setNroMillas(Double nroMillas) {
 		this.NroMillas = nroMillas;
 	}
-
-
 
 	public UUID getKeyCargo() {
 		return KeyCargo;

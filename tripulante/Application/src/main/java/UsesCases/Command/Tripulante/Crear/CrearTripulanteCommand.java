@@ -5,13 +5,9 @@ import Fourteam.mediator.Request;
 
 public class CrearTripulanteCommand implements Request<TripulanteDto> {
 
+	public TripulanteDto tripulanteDto;
 
-    public TripulanteDto  tripulanteDto;
-
-    public CrearTripulanteCommand(TripulanteDto tripu) {
-
-        tripulanteDto = tripu;
-
-    }
-
+	public CrearTripulanteCommand(TripulanteDto tripu) {
+		tripulanteDto = tripu;
+	}
 }

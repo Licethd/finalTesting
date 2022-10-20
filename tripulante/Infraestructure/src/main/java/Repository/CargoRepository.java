@@ -1,12 +1,11 @@
 package Repository;
 
-import java.util.List;
-import java.util.UUID;
-
-import Model.Tripulante.Cargo;
-import Repositories.ICargoRepository;
 import Context.IWriteDbContext;
 import Fourteam.db.DbSet;
+import Model.Tripulante.Cargo;
+import Repositories.ICargoRepository;
+import java.util.List;
+import java.util.UUID;
 
 public class CargoRepository implements ICargoRepository {
 
@@ -35,7 +34,6 @@ public class CargoRepository implements ICargoRepository {
 	public Cargo Delete(Cargo obj) throws Exception {
 		_cargo.Delete((it -> it.key.equals(obj.key)));
 		return obj;
-
 	}
 
 	@Override
@@ -43,5 +41,4 @@ public class CargoRepository implements ICargoRepository {
 		_cargo.Update(obj, (it -> it.key.equals(obj.key)));
 		return obj;
 	}
-
 }

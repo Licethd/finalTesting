@@ -3,14 +3,14 @@ package UsesCases.Command.Cargo.Editar;
 import Dto.Cargo.CargoDto;
 import Factories.ICargoFactory;
 import Factories.ITripulanteFactory;
+import Fourteam.http.Exception.HttpException;
+import Fourteam.http.HttpStatus;
+import Fourteam.mediator.RequestHandler;
 import Model.Tripulante.Cargo;
 import Model.Tripulante.Tripulante;
 import Repositories.ICargoRepository;
 import Repositories.ITripulanteRepository;
 import Repositories.IUnitOfWork;
-import Fourteam.http.Exception.HttpException;
-import Fourteam.http.HttpStatus;
-import Fourteam.mediator.RequestHandler;
 
 public class EditarCargoHandler
 	implements RequestHandler<EditarCargoCommand, CargoDto> {
@@ -30,11 +30,8 @@ public class EditarCargoHandler
 	}
 
 	@Override
-	public CargoDto handle(EditarCargoCommand request)
-		throws Exception {
-			Cargo cargo = _cargoRepository.FindByKey(
-			request.cargoDto.key
-		);
+	public CargoDto handle(EditarCargoCommand request) throws Exception {
+		Cargo cargo = _cargoRepository.FindByKey(request.cargoDto.key);
 		if (cargo == null) {
 			throw new HttpException(
 				HttpStatus.BAD_REQUEST,

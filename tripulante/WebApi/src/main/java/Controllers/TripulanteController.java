@@ -1,19 +1,18 @@
 package Controllers;
 
-import java.util.List;
-import java.util.UUID;
-
 import Dto.Tripulante.TripulanteDto;
+import Fourteam.http.Exception.HttpException;
+import Fourteam.http.annotation.*;
+import Fourteam.mediator.Mediator;
+import Fourteam.mediator.Response;
+import Model.Tripulante.*;
 import UsesCases.Command.Tripulante.Crear.CrearTripulanteCommand;
 import UsesCases.Command.Tripulante.Editar.EditarTripulanteCommand;
 import UsesCases.Command.Tripulante.Eliminar.EliminarTripulanteCommand;
 import UsesCases.Queries.Tripulante.GetAll.GetAllTripulanteQuery;
 import UsesCases.Queries.Tripulante.GetByKey.GetTripulanteByKeyQuery;
-import Model.Tripulante.*;
-import Fourteam.http.Exception.HttpException;
-import Fourteam.http.annotation.*;
-import Fourteam.mediator.Mediator;
-import Fourteam.mediator.Response;
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/tripulante")
@@ -27,7 +26,9 @@ public class TripulanteController {
 
 	@GetMapping("/")
 	public List<TripulanteDto> getAll() throws Exception {
-		Response<List<TripulanteDto>> lista = _mediator.send(new GetAllTripulanteQuery());
+		Response<List<TripulanteDto>> lista = _mediator.send(
+			new GetAllTripulanteQuery()
+		);
 		return lista.data;
 		// try {
 		// Response<List<TripulanteDto>> lista = _mediator.send(new
@@ -41,22 +42,24 @@ public class TripulanteController {
 	@GetMapping("/{key}")
 	// public Response<TripulanteDto> getByKey(@PathVariable GetTripulanteByKeyQuery
 	// request)
-	public TripulanteDto getByKey(@PathVariable GetTripulanteByKeyQuery request)
-			throws Exception {
+	public TripulanteDto getByKey(
+		@PathVariable GetTripulanteByKeyQuery request
+	) throws Exception {
 		return (TripulanteDto) _mediator.send(request).data;
 	}
 
 	@PostMapping("/registro")
-	public UUID register(@RequestBody CrearTripulanteCommand tripulante) throws Exception {
-
+	public UUID register(@RequestBody CrearTripulanteCommand tripulante)
+		throws Exception {
 		return (UUID) _mediator.send(tripulante).data;
 		// return _mediator.send(tripulacion);
 	}
 
 	@PutMapping("/{key}")
 	public TripulanteDto edit(
-			@RequestBody Tripulante tripulante,
-			@PathVariable EditarTripulanteCommand request) throws Exception {
+		@RequestBody Tripulante tripulante,
+		@PathVariable EditarTripulanteCommand request
+	) throws Exception {
 		request.tripulanteDto.Nombre = tripulante.getNombre();
 		request.tripulanteDto.Apellido = tripulante.getApellido();
 		request.tripulanteDto.EmailAddress = tripulante.getEmailAddress();
@@ -75,7 +78,8 @@ public class TripulanteController {
 	}
 
 	@DeleteMapping("/{key}")
-	public UUID delete(@PathVariable EliminarTripulanteCommand request) throws Exception {
+	public UUID delete(@PathVariable EliminarTripulanteCommand request)
+		throws Exception {
 		return (UUID) _mediator.send(request).data;
 		// try {
 		// return (UUID) _mediator.send(request).data;
@@ -83,5 +87,4 @@ public class TripulanteController {
 		// throw (HttpException) e.getCause();
 		// }
 	}
-
 }

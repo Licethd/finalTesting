@@ -3,6 +3,7 @@ package Dto.Cargo;
 import java.util.UUID;
 
 public class CargoDto {
+
 	public UUID key;
 	// public Double Sueldo;
 	public String Descripcion;
@@ -16,12 +17,12 @@ public class CargoDto {
 	}
 
 	public void setKey(UUID keyCargo) {
-        this.key = keyCargo;
-    }
+		this.key = keyCargo;
+	}
 
-    public UUID getKey() {
-        return key;
-    }
+	public UUID getKey() {
+		return key;
+	}
 
 	// public Double getSueldo() {
 	// 	return this.Sueldo;
@@ -38,5 +39,4 @@ public class CargoDto {
 	public void setDescripcion(String descripcion) {
 		this.Descripcion = descripcion;
 	}
-
 }

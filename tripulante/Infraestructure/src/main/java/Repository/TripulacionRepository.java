@@ -1,15 +1,14 @@
 package Repository;
 
-import java.util.List;
-import java.util.UUID;
-
+import Context.IWriteDbContext;
+import Fourteam.db.DbSet;
 import Model.Tripulacion.Tripulacion;
 import Model.Tripulante.Cargo;
 import Model.Tripulante.Tripulante;
 import Repositories.ICargoRepository;
 import Repositories.ITripulacionRepository;
-import Context.IWriteDbContext;
-import Fourteam.db.DbSet;
+import java.util.List;
+import java.util.UUID;
 
 public class TripulacionRepository implements ITripulacionRepository {
 
@@ -21,20 +20,25 @@ public class TripulacionRepository implements ITripulacionRepository {
 
 	@Override
 	public Tripulacion FindByKey(UUID key) throws Exception {
-		return _tripulacion.Single(obj -> obj.key.toString().equals(key.toString()));
+		return _tripulacion.Single(obj ->
+			obj.key.toString().equals(key.toString())
+		);
 	}
 
 	@Override
-	public Tripulacion FindByTripulante(Tripulacion object, UUID key) throws Exception {
+	public Tripulacion FindByTripulante(Tripulacion object, UUID key)
+		throws Exception {
 		return _tripulacion.Single(obj ->
-		obj.key.toString().equals(object.key.toString()) &&
-		obj.Tripulantes
-		  .stream()
-		  .filter(tripulante -> tripulante.key.toString().equals(key.toString()))
-		  .findAny()
-		  .orElse(null) !=
-		null
-	  );
+			obj.key.toString().equals(object.key.toString()) &&
+			obj.Tripulantes
+				.stream()
+				.filter(tripulante ->
+					tripulante.key.toString().equals(key.toString())
+				)
+				.findAny()
+				.orElse(null) !=
+			null
+		);
 	}
 
 	@Override
@@ -51,7 +55,6 @@ public class TripulacionRepository implements ITripulacionRepository {
 	public Tripulacion Delete(Tripulacion obj) throws Exception {
 		_tripulacion.Delete((it -> it.key.equals(obj.key)));
 		return obj;
-
 	}
 
 	@Override
@@ -59,5 +62,4 @@ public class TripulacionRepository implements ITripulacionRepository {
 		_tripulacion.Update(obj, (it -> it.key.equals(obj.key)));
 		return obj;
 	}
-
 }

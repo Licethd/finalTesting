@@ -4,6 +4,9 @@ import Dto.Tripulacion.TripulacionDto;
 import Factories.ICargoFactory;
 import Factories.ITripulacionFactory;
 import Factories.ITripulanteFactory;
+import Fourteam.http.Exception.HttpException;
+import Fourteam.http.HttpStatus;
+import Fourteam.mediator.RequestHandler;
 import Model.Tripulacion.Tripulacion;
 import Model.Tripulante.Cargo;
 import Model.Tripulante.Tripulante;
@@ -11,9 +14,6 @@ import Repositories.ICargoRepository;
 import Repositories.ITripulacionRepository;
 import Repositories.ITripulanteRepository;
 import Repositories.IUnitOfWork;
-import Fourteam.http.Exception.HttpException;
-import Fourteam.http.HttpStatus;
-import Fourteam.mediator.RequestHandler;
 
 public class EditarTripulacionHandler
 	implements RequestHandler<EditarTripulacionCommand, TripulacionDto> {
@@ -35,7 +35,7 @@ public class EditarTripulacionHandler
 	@Override
 	public TripulacionDto handle(EditarTripulacionCommand request)
 		throws Exception {
-			Tripulacion tripulacion = _tripulacionRepository.FindByKey(
+		Tripulacion tripulacion = _tripulacionRepository.FindByKey(
 			request.tripulacionDto.key
 		);
 		if (tripulacion == null) {
@@ -50,6 +50,9 @@ public class EditarTripulacionHandler
 
 		_tripulacionRepository.Update(tripulacion);
 		//return tripulacion;
-		return new TripulacionDto(tripulacion.key, tripulacion.getDescripcion());
+		return new TripulacionDto(
+			tripulacion.key,
+			tripulacion.getDescripcion()
+		);
 	}
 }

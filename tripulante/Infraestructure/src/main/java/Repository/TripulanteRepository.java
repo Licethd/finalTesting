@@ -1,12 +1,11 @@
 package Repository;
 
-import java.util.List;
-import java.util.UUID;
-
-import Model.Tripulante.Tripulante;
-import Repositories.ITripulanteRepository;
 import Context.IWriteDbContext;
 import Fourteam.db.DbSet;
+import Model.Tripulante.Tripulante;
+import Repositories.ITripulanteRepository;
+import java.util.List;
+import java.util.UUID;
 
 public class TripulanteRepository implements ITripulanteRepository {
 
@@ -18,7 +17,9 @@ public class TripulanteRepository implements ITripulanteRepository {
 
 	@Override
 	public Tripulante FindByKey(UUID key) throws Exception {
-		return _tripulantes.Single(obj -> obj.key.toString().equals(key.toString()));
+		return _tripulantes.Single(obj ->
+			obj.key.toString().equals(key.toString())
+		);
 	}
 
 	@Override
@@ -35,7 +36,6 @@ public class TripulanteRepository implements ITripulanteRepository {
 	public Tripulante Delete(Tripulante obj) throws Exception {
 		_tripulantes.Delete((it -> it.key.equals(obj.key)));
 		return obj;
-
 	}
 
 	@Override
@@ -43,5 +43,4 @@ public class TripulanteRepository implements ITripulanteRepository {
 		_tripulantes.Update(obj, (it -> it.key.equals(obj.key)));
 		return obj;
 	}
-
 }

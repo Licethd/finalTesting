@@ -1,12 +1,10 @@
 package Event;
 
+import Model.Tripulante.Tripulante;
 import core.DomainEvent;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-
-import Model.Tripulante.Tripulante;
-
 
 public class TripulacionRegistrado extends DomainEvent {
 
@@ -14,7 +12,11 @@ public class TripulacionRegistrado extends DomainEvent {
 	public String Nombre;
 	public List<Tripulante> Tripulantes;
 
-	public TripulacionRegistrado(UUID key, String nombre, List<Tripulante> Tripu) {
+	public TripulacionRegistrado(
+		UUID key,
+		String nombre,
+		List<Tripulante> Tripu
+	) {
 		super(LocalDateTime.now());
 		KeyTripulacion = key;
 		Nombre = nombre;

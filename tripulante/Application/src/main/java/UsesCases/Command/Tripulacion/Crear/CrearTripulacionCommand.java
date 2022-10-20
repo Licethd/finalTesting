@@ -6,13 +6,9 @@ import Fourteam.mediator.Request;
 
 public class CrearTripulacionCommand implements Request<TripulacionDto> {
 
+	public TripulacionDto tripulacionDto;
 
-    public TripulacionDto tripulacionDto;
-
-    public CrearTripulacionCommand(TripulacionDto tripulacion) {
-
-        tripulacionDto = tripulacion;
-
-    }
-
+	public CrearTripulacionCommand(TripulacionDto tripulacion) {
+		tripulacionDto = tripulacion;
+	}
 }
