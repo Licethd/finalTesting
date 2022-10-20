@@ -7,6 +7,7 @@ import Dto.Tripulacion.TripulacionDto;
 import Dto.Tripulante.TripulanteDto;
 import UsesCases.Command.Tripulacion.AddTripulante.AddTripulanteCommand;
 import UsesCases.Command.Tripulacion.Crear.CrearTripulacionCommand;
+import UsesCases.Command.Tripulacion.DeleteTripulante.DeleteTripulanteCommand;
 import UsesCases.Command.Tripulacion.Editar.EditarTripulacionCommand;
 import UsesCases.Command.Tripulacion.Eliminar.EliminarTripulacionCommand;
 import UsesCases.Queries.Tripulacion.GetAll.GetAllTripulacionQuery;
@@ -62,6 +63,14 @@ public class TripulacionController {
 
 	@DeleteMapping("/{key}")
 	public UUID delete(@PathVariable EliminarTripulacionCommand request) throws Exception {
+		return (UUID) _mediator.send(request).data;
+	}
+
+	@PutMapping("/deleteTripulante/{key}")
+	public UUID deleteTripulante(
+		@RequestBody TripulanteDto tripulanteDto,
+			@PathVariable DeleteTripulanteCommand request) throws Exception {
+		request.setTripulante(tripulanteDto);
 		return (UUID) _mediator.send(request).data;
 	}
 }

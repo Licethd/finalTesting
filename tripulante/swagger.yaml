@@ -87,6 +87,22 @@ paths:
       responses:
         '200': {description: Response 200}
       tags: [/tripulacion]
+  /tripulacion/deleteTripulante/{key}:
+    put:
+      summary: /tripulacion deleteTripulante
+      requestBody:
+        content:
+          application/json:
+            schema: {type: object}
+      operationId: /tripulacion_deleteTripulante
+      responses:
+        '200': {description: Response 200}
+      parameters:
+      - schema: {type: string}
+        in: path
+        name: key
+        required: true
+      tags: [/tripulacion]
   /tripulante/{key}:
     get:
       summary: /tripulante getByKey

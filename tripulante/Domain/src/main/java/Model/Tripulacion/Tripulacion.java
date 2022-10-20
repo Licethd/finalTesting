@@ -44,19 +44,38 @@ public class Tripulacion extends AggregateRoot<UUID> {
 	}
 
 	public void agregarTripulante(Tripulante tripulante) throws Exception {
-		// this.Tripulantes.parallelStream().filter(p -> p.key == tripulante.key).findFirst().ifPresent(p -> {
-		// 	throw new RuntimeException("El tripulante ya existe");
+		// this.Tripulantes.parallelStream().filter(p -> p.key ==
+		// tripulante.key).findFirst().ifPresent(p -> {
+		// throw new RuntimeException("El tripulante ya existe");
 		// });
 		Tripulantes
-        .parallelStream()
-        .filter(p -> p.key == tripulante.key)
-        .findFirst()
-        .ifPresent(p -> {
-          throw new RuntimeException("El tripulante ya existe");
-        });
+				.parallelStream()
+				.filter(p -> p.key == tripulante.key)
+				.findFirst()
+				.ifPresent(p -> {
+					throw new RuntimeException("El tripulante ya existe");
+				});
+				//tripulante.setEstado(2);
 		this.Tripulantes.add(tripulante);
 		eventChange();
 
+	}
+
+	public void eliminarTripulante(UUID key) throws Exception {
+		// this.Tripulantes.parallelStream().filter(p -> p.key ==
+		// tripulante.key).findFirst().ifPresent(p -> {
+		// throw new RuntimeException("El tripulante ya existe");
+		// });
+		Tripulantes
+				.parallelStream()
+				.filter(p -> p.key == key)
+				.findFirst()
+				.ifPresent(p -> {
+					throw new RuntimeException("El tripulante ya existe");
+				});
+
+		this.Tripulantes.removeIf(t -> t.key.equals(key));
+		eventChange();
 	}
 
 	public String getDescripcion() {

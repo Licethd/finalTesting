@@ -3,6 +3,7 @@ import UsesCases.Command.Cargo.Crear.CrearCargoHandler;
 import UsesCases.Command.Cargo.Editar.EditarCargoHandler;
 import UsesCases.Command.Cargo.Eliminar.EliminarCargoHandler;
 import UsesCases.Command.Tripulacion.AddTripulante.AddTripulanteHandler;
+import UsesCases.Command.Tripulacion.DeleteTripulante.DeleteTripulanteHandler;
 import UsesCases.Command.Tripulacion.Crear.CrearTripulacionHandler;
 import UsesCases.Command.Tripulacion.Editar.EditarTripulacionHandler;
 import UsesCases.Command.Tripulacion.Eliminar.EliminarTripulacionHandler;
@@ -57,6 +58,7 @@ public class Application {
         IMediator.registerHandler(EliminarTripulacionHandler.class);
         IMediator.registerHandler(EditarTripulacionHandler.class);
         IMediator.registerHandler(AddTripulanteHandler.class);
+        IMediator.registerHandler(DeleteTripulanteHandler.class);
 
 
 		IMediator.registerHandler(PublishIntegrationEventWhenTripulacionCreadoHandler.class);

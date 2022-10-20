@@ -1,4 +1,4 @@
-package UsesCases.Command.Tripulacion.AddTripulante;
+package UsesCases.Command.Tripulacion.DeleteTripulante;
 
 import java.util.UUID;
 
@@ -13,8 +13,8 @@ import Fourteam.http.Exception.HttpException;
 import Fourteam.http.HttpStatus;
 import Fourteam.mediator.RequestHandler;
 
-public class AddTripulanteHandler
-		implements RequestHandler<AddTripulanteCommand, UUID> {
+public class DeleteTripulanteHandler
+		implements RequestHandler<DeleteTripulanteCommand, UUID> {
 
 	private ITripulacionFactory _tripulacionFactory;
 	private ITripulacionRepository _tripulacionRepository;
@@ -24,7 +24,7 @@ public class AddTripulanteHandler
 
 	private IUnitOfWork _unitOfWork;
 
-	public AddTripulanteHandler(
+	public DeleteTripulanteHandler(
 			ITripulacionFactory tripulacionFactory,
 			ITripulacionRepository tripulacionRepository,
 			ITripulanteFactory tripulanteFactory,
@@ -40,7 +40,7 @@ public class AddTripulanteHandler
 	}
 
 	@Override
-	public UUID handle(AddTripulanteCommand request)
+	public UUID handle(DeleteTripulanteCommand request)
 			throws Exception {
 		Tripulacion tripulacion = _tripulacionRepository.FindByKey(
 				request.key);
@@ -57,22 +57,22 @@ public class AddTripulanteHandler
 					"Tripulante no encontrado");
 		}
 
-		Tripulacion tripulanteValidar = _tripulacionRepository.FindByTripulante(tripulacion, request.Tripulante.key);
-		if (tripulanteValidar != null) {
-			throw new HttpException(
-					HttpStatus.BAD_REQUEST,
-					"Tripulante ya existe");
-		}
+		// Tripulacion tripulanteValidar = _tripulacionRepository.FindByTripulante(tripulacion, request.Tripulante.key);
+		// if (tripulanteValidar != null) {
+		// 	throw new HttpException(
+		// 			HttpStatus.BAD_REQUEST,
+		// 			"Tripulante ya existe");
+		// }
 
-		tripulacion.agregarTripulante(tripulante);
+		tripulacion.eliminarTripulante(request.Tripulante.key);
 		//Change estado
-		tripulante.setEstado(2);
+		tripulante.setEstado(1);
 		_tripulanteRepository.Update(tripulante);
 
 		_tripulacionRepository.Update(tripulacion);
 		_unitOfWork.commit();
 
-		return tripulante.getKey();
+		return tripulacion.getKey();
 
 	}
 }
