@@ -65,7 +65,7 @@ public class DeleteTripulanteHandler
 		// }
 
 		tripulacion.eliminarTripulante(request.Tripulante.key);
-		//Change estado
+		//Change estado tripulante
 		tripulante.setEstado(1);
 		_tripulanteRepository.Update(tripulante);
 
