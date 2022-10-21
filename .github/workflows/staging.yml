@@ -8,50 +8,20 @@ on:
         branches: ['main']
 
 jobs:
-    compilacion:
+    ssh_deploy:
         runs-on: ubuntu-latest
-
         steps:
-            - uses: actions/checkout@v2
-              with:
-                  fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
-            - name: Set up JDK 11
-              uses: actions/setup-java@v1
-              with:
-                  java-version: 11
-            - name: Cache SonarCloud packages
-              uses: actions/cache@v1
-              with:
-                  path: ~/.sonar/cache
-                  key: ${{ runner.os }}-sonar
-                  restore-keys: ${{ runner.os }}-sonar
-            - name: Cache Maven packages
-              uses: actions/cache@v1
-              with:
-                  path: ~/.m2
-                  key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml')}}
-                  restore-keys: ${{ runner.os }}-m2
-            - name: Build and analyze
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if anyy
-                  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-              run: cd tripulante && mvn jacoco:prepare-agent test install jacoco:report && mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=dmsfourteamNur_Tripulante
-
-    release:
-        needs: compilacion
-        runs-on: ubuntu-latest
-
-        steps:
+            - uses: actions/checkout@v3
             - name: Configure SSH
               env:
-                  SSH_KEY: ${{ secrets.SSH_KEY }}
+                  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
                   KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
                   SSH_HOST: ${{ secrets.HOST }}
                   SSH_USER: ${{ secrets.SSH_USER }}
               run: |
                   mkdir -p ~/.ssh/
                   echo "$KNOWN_HOSTS" > ~/.ssh/known_hosts
-                  echo "$SSH_KEY" > ~/.ssh/staging.key
+                  echo "$SSH_PRIVATE_KEY" > ~/.ssh/staging.key
                   chmod 600 ~/.ssh/staging.key
                   cat >>~/.ssh/config <<END
                     Host staging
@@ -60,5 +30,5 @@ jobs:
                       IdentityFile ~/.ssh/staging.key
                       StrictHostKeyChecking no
                   END
-            - name: Docker build
-              run: ssh staging 'cd tripulante && bash ./deploy.sh'
+            - name: Test ssh write
+              run: ssh staging 'cd Tripulante && sudo bash deploy.sh'
