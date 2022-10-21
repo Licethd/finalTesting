@@ -2,12 +2,12 @@ package UsesCases.Command.Tripulante.Editar;
 
 import Dto.Tripulante.TripulanteDto;
 import Factories.ITripulanteFactory;
-import Model.Tripulante.Tripulante;
-import Repositories.ITripulanteRepository;
-import Repositories.IUnitOfWork;
 import Fourteam.http.Exception.HttpException;
 import Fourteam.http.HttpStatus;
 import Fourteam.mediator.RequestHandler;
+import Model.Tripulante.Tripulante;
+import Repositories.ITripulanteRepository;
+import Repositories.IUnitOfWork;
 
 public class EditarTripulanteHandler
 	implements RequestHandler<EditarTripulanteCommand, TripulanteDto> {
@@ -48,6 +48,15 @@ public class EditarTripulanteHandler
 		tripulante.setKeyCargo(request.tripulanteDto.KeyCargo);
 		_tripulanteRepository.Update(tripulante);
 		// return tripulante;
-		return new TripulanteDto(tripulante.key, tripulante.getNombre(), tripulante.getApellido(), tripulante.getEmailAddress(), tripulante.getTipo(), tripulante.getHorasVuelo(), tripulante.getNroMillas(),tripulante.getKeyCargo());
+		return new TripulanteDto(
+			tripulante.key,
+			tripulante.getNombre(),
+			tripulante.getApellido(),
+			tripulante.getEmailAddress(),
+			tripulante.getTipo(),
+			tripulante.getHorasVuelo(),
+			tripulante.getNroMillas(),
+			tripulante.getKeyCargo()
+		);
 	}
 }

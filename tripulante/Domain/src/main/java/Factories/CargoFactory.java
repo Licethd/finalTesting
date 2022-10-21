@@ -4,14 +4,10 @@ import Model.Tripulante.Cargo;
 
 public class CargoFactory implements ICargoFactory {
 
-    public CargoFactory(){
+	public CargoFactory() {}
 
-    }
-
-    @Override
-    public Cargo Create( String descripcion) {
-
-        return new Cargo(descripcion);
-    }
-
+	@Override
+	public Cargo Create(String descripcion) {
+		return new Cargo(descripcion);
+	}
 }

@@ -1,9 +1,8 @@
 package Factories;
 
-import java.util.UUID;
-
 import Model.Tripulante.Cargo;
 import Model.Tripulante.Tripulante;
+import java.util.UUID;
 
 public class TripulanteFactory implements ITripulanteFactory {
 
@@ -11,16 +10,19 @@ public class TripulanteFactory implements ITripulanteFactory {
 	// Aire,
 	// Tierra
 	// }
-	public TripulanteFactory() {
-
-	}
+	public TripulanteFactory() {}
 
 	@Override
-	public Tripulante Create(String nombre, String apellido, String emailAddress, String estado, String tipo,
-			Double horasVuelo, Double nroMillas,
-			UUID keyCargo) {
-
-
+	public Tripulante Create(
+		String nombre,
+		String apellido,
+		String emailAddress,
+		String estado,
+		String tipo,
+		Double horasVuelo,
+		Double nroMillas,
+		UUID keyCargo
+	) {
 		// switch (nombre) {
 		// case Tipo.Aire:
 		// return new Tripulante(nombre, apellido, emailAddress, cargo);
@@ -29,7 +31,14 @@ public class TripulanteFactory implements ITripulanteFactory {
 		// default:
 		// return null;
 		// }
-		return new Tripulante(nombre, apellido, emailAddress, tipo, horasVuelo, nroMillas, keyCargo);
+		return new Tripulante(
+			nombre,
+			apellido,
+			emailAddress,
+			tipo,
+			horasVuelo,
+			nroMillas,
+			keyCargo
+		);
 	}
-
 }

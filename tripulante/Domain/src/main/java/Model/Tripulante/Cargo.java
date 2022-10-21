@@ -1,23 +1,22 @@
 package Model.Tripulante;
 
-import java.util.UUID;
-
 import core.Entity;
+import java.util.UUID;
 
 // import java.util.Date;
 
 public class Cargo extends Entity<UUID> {
+
 	// public abstract class Cargo extends Tripulante {
 	// private UUID key;
 	private String Descripcion;
 	private Double sueldo;
+
 	// private Date fecha_ingreso;
 
-	public Cargo() {
+	public Cargo() {}
 
-	}
-
-	public Cargo( String descripcion) {
+	public Cargo(String descripcion) {
 		key = UUID.randomUUID();
 		this.Descripcion = descripcion;
 		// this.sueldo = sueldo;
@@ -30,7 +29,6 @@ public class Cargo extends Entity<UUID> {
 	public void setKeyCargo(UUID key) {
 		this.key = key;
 	}
-
 
 	// public Double getSueldo() {
 	// 	return sueldo;
@@ -47,7 +45,6 @@ public class Cargo extends Entity<UUID> {
 	public void setDescripcion(String descripcion) {
 		this.Descripcion = descripcion;
 	}
-
 	// @Override
 	// public String toString() {
 	// return "Cargo{" + "descripcion=" + descripcion + ", sueldo=" + sueldo + '}';

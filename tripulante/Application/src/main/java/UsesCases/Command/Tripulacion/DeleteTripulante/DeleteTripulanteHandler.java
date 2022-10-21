@@ -1,20 +1,19 @@
 package UsesCases.Command.Tripulacion.DeleteTripulante;
 
-import java.util.UUID;
-
 import Factories.ITripulacionFactory;
 import Factories.ITripulanteFactory;
+import Fourteam.http.Exception.HttpException;
+import Fourteam.http.HttpStatus;
+import Fourteam.mediator.RequestHandler;
 import Model.Tripulacion.Tripulacion;
 import Model.Tripulante.Tripulante;
 import Repositories.ITripulacionRepository;
 import Repositories.ITripulanteRepository;
 import Repositories.IUnitOfWork;
-import Fourteam.http.Exception.HttpException;
-import Fourteam.http.HttpStatus;
-import Fourteam.mediator.RequestHandler;
+import java.util.UUID;
 
 public class DeleteTripulanteHandler
-		implements RequestHandler<DeleteTripulanteCommand, UUID> {
+	implements RequestHandler<DeleteTripulanteCommand, UUID> {
 
 	private ITripulacionFactory _tripulacionFactory;
 	private ITripulacionRepository _tripulacionRepository;
@@ -25,11 +24,12 @@ public class DeleteTripulanteHandler
 	private IUnitOfWork _unitOfWork;
 
 	public DeleteTripulanteHandler(
-			ITripulacionFactory tripulacionFactory,
-			ITripulacionRepository tripulacionRepository,
-			ITripulanteFactory tripulanteFactory,
-			ITripulanteRepository tripulanteRepository,
-			IUnitOfWork _unitOfWork) {
+		ITripulacionFactory tripulacionFactory,
+		ITripulacionRepository tripulacionRepository,
+		ITripulanteFactory tripulanteFactory,
+		ITripulanteRepository tripulanteRepository,
+		IUnitOfWork _unitOfWork
+	) {
 		this._tripulacionFactory = tripulacionFactory;
 		this._tripulacionRepository = tripulacionRepository;
 
@@ -40,21 +40,23 @@ public class DeleteTripulanteHandler
 	}
 
 	@Override
-	public UUID handle(DeleteTripulanteCommand request)
-			throws Exception {
-		Tripulacion tripulacion = _tripulacionRepository.FindByKey(
-				request.key);
+	public UUID handle(DeleteTripulanteCommand request) throws Exception {
+		Tripulacion tripulacion = _tripulacionRepository.FindByKey(request.key);
 		if (tripulacion == null) {
 			throw new HttpException(
-					HttpStatus.BAD_REQUEST,
-					"Tripulacion no encontrado");
+				HttpStatus.BAD_REQUEST,
+				"Tripulacion no encontrado"
+			);
 		}
 
-		Tripulante tripulante = _tripulanteRepository.FindByKey(request.Tripulante.key);
+		Tripulante tripulante = _tripulanteRepository.FindByKey(
+			request.Tripulante.key
+		);
 		if (tripulante == null) {
 			throw new HttpException(
-					HttpStatus.BAD_REQUEST,
-					"Tripulante no encontrado");
+				HttpStatus.BAD_REQUEST,
+				"Tripulante no encontrado"
+			);
 		}
 
 		// Tripulacion tripulanteValidar = _tripulacionRepository.FindByTripulante(tripulacion, request.Tripulante.key);
@@ -73,6 +75,5 @@ public class DeleteTripulanteHandler
 		_unitOfWork.commit();
 
 		return tripulacion.getKey();
-
 	}
 }

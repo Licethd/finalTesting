@@ -1,12 +1,10 @@
 package Event;
 
+import Model.Tripulante.Tripulante;
 import core.DomainEvent;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-
-import Model.Tripulante.Tripulante;
-
 
 public class TripulacionChange extends DomainEvent {
 

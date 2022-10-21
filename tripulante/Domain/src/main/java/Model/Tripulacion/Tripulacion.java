@@ -5,7 +5,6 @@ import Event.TripulacionRegistrado;
 import Model.Tripulante.Tripulante;
 import core.AggregateRoot;
 import core.BussinessRuleValidateExeption;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +17,7 @@ public class Tripulacion extends AggregateRoot<UUID> {
 	private LocalDateTime FechaOn;
 	public List<Tripulante> Tripulantes;
 
-	public Tripulacion() {
-	}
+	public Tripulacion() {}
 
 	public Tripulacion(String descripcion) {
 		// key = UUID.randomUUID();
@@ -36,11 +34,15 @@ public class Tripulacion extends AggregateRoot<UUID> {
 	}
 
 	public void eventCreado() {
-		addDomainEvent(new TripulacionRegistrado(key, Descripcion, this.Tripulantes));
+		addDomainEvent(
+			new TripulacionRegistrado(key, Descripcion, this.Tripulantes)
+		);
 	}
 
 	public void eventChange() {
-		addDomainEvent(new TripulacionChange(key, Descripcion, this.Tripulantes));
+		addDomainEvent(
+			new TripulacionChange(key, Descripcion, this.Tripulantes)
+		);
 	}
 
 	public void agregarTripulante(Tripulante tripulante) throws Exception {
@@ -49,16 +51,15 @@ public class Tripulacion extends AggregateRoot<UUID> {
 		// throw new RuntimeException("El tripulante ya existe");
 		// });
 		Tripulantes
-				.parallelStream()
-				.filter(p -> p.key == tripulante.key)
-				.findFirst()
-				.ifPresent(p -> {
-					throw new RuntimeException("El tripulante ya existe");
-				});
-				//tripulante.setEstado(2);
+			.parallelStream()
+			.filter(p -> p.key == tripulante.key)
+			.findFirst()
+			.ifPresent(p -> {
+				throw new RuntimeException("El tripulante ya existe");
+			});
+		//tripulante.setEstado(2);
 		this.Tripulantes.add(tripulante);
 		eventChange();
-
 	}
 
 	public void eliminarTripulante(UUID key) throws Exception {
@@ -67,12 +68,12 @@ public class Tripulacion extends AggregateRoot<UUID> {
 		// throw new RuntimeException("El tripulante ya existe");
 		// });
 		Tripulantes
-				.parallelStream()
-				.filter(p -> p.key == key)
-				.findFirst()
-				.ifPresent(p -> {
-					throw new RuntimeException("El tripulante ya existe");
-				});
+			.parallelStream()
+			.filter(p -> p.key == key)
+			.findFirst()
+			.ifPresent(p -> {
+				throw new RuntimeException("El tripulante ya existe");
+			});
 
 		this.Tripulantes.removeIf(t -> t.key.equals(key));
 		eventChange();
@@ -109,7 +110,6 @@ public class Tripulacion extends AggregateRoot<UUID> {
 	public void setTripulantes(List<Tripulante> tripulantes) {
 		this.Tripulantes = tripulantes;
 	}
-
 	// public void addDomainEvent(DomainEvent event) {
 	// domainEvents.add(event);
 	// }

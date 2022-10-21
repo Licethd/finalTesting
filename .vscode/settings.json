@@ -1,4 +1,4 @@
 {
-    "java.configuration.updateBuildConfiguration": "interactive",
-    "java.checkstyle.configuration": "https://"
+	"java.configuration.updateBuildConfiguration": "interactive",
+	"java.checkstyle.configuration": "https://"
 }

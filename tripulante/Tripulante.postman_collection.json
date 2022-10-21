@@ -39,13 +39,8 @@
 						},
 						"url": {
 							"raw": "{{url}}/tripulante/registro",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"tripulante",
-								"registro"
-							]
+							"host": ["{{url}}"],
+							"path": ["tripulante", "registro"]
 						}
 					},
 					"response": []
@@ -79,13 +74,8 @@
 						},
 						"url": {
 							"raw": "{{url}}/tripulante/{{key_tripulante}}",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"tripulante",
-								"{{key_tripulante}}"
-							]
+							"host": ["{{url}}"],
+							"path": ["tripulante", "{{key_tripulante}}"]
 						}
 					},
 					"response": []
@@ -110,13 +100,8 @@
 						"header": [],
 						"url": {
 							"raw": "{{url}}/tripulante/{{key_tripulante}}",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"tripulante",
-								"{{key_tripulante}}"
-							]
+							"host": ["{{url}}"],
+							"path": ["tripulante", "{{key_tripulante}}"]
 						}
 					},
 					"response": []
@@ -141,13 +126,8 @@
 						"header": [],
 						"url": {
 							"raw": "{{url}}/tripulante/{{key_tripulante}}",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"tripulante",
-								"{{key_tripulante}}"
-							]
+							"host": ["{{url}}"],
+							"path": ["tripulante", "{{key_tripulante}}"]
 						}
 					},
 					"response": []
@@ -175,12 +155,8 @@
 						"header": [],
 						"url": {
 							"raw": "{{url}}/tripulante",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"tripulante"
-							]
+							"host": ["{{url}}"],
+							"path": ["tripulante"]
 						}
 					},
 					"response": []
