@@ -16,6 +16,7 @@ public class CargoDto_Test {
 		Assert.assertNull(cargo.Descripcion);
 
 		cargo.setDescripcion(descripcion);
+		cargo.setKey(cargo2.getKey());
 
 		Assert.assertEquals(descripcion, cargo.getDescripcion());
 	}
