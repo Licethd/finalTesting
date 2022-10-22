@@ -43,28 +43,6 @@ public class Tripulante extends AggregateRoot<UUID> {
 		this.KeyCargo = keyCargo;
 	}
 
-	// public Tripulante(
-	// 	UUID key,
-	// 	String nombre,
-	// 	String apellido,
-	// 	String emailAddress,
-	// 	// String estado,
-	// 	String tipo,
-	// 	Double horasVuelo,
-	// 	Double nroMillas,
-	// 	Cargo cargo
-	// ) {
-	// 	this.key = key;
-	// 	this.Nombre = nombre;
-	// 	this.Apellido = apellido;
-	// 	this.EmailAddress = emailAddress;
-	// 	this.Estado = 1;
-	// 	this.Tipo = tipo;
-	// 	this.HorasVuelo = horasVuelo;
-	// 	this.NroMillas = nroMillas;
-	// 	this.Cargo = cargo;
-	// }
-
 	public void eventCreado() {
 		addDomainEvent(new PersonalRegistrado(key, Nombre));
 	}
