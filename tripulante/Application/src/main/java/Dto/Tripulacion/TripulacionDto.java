@@ -31,14 +31,6 @@ public class TripulacionDto {
 		return key;
 	}
 
-	// public Double getSueldo() {
-	// 	return this.Sueldo;
-	// }
-
-	// public void setSueldo(Double sueldo) {
-	// 	this.Sueldo = sueldo;
-	// }
-
 	public String getDescripcion() {
 		return this.Descripcion;
 	}
