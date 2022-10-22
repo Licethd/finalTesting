@@ -115,6 +115,56 @@ public class Tripulacion_Test {
 	}
 
 	@Test
+	public void deleteTripulante_accept() {
+		Tripulacion a = new Tripulacion("GRUPO-B");
+		try {
+			a.eliminarTripulante(UUID.randomUUID());
+		} catch (Exception e) {}
+		// TODO://
+		// Assert.assertEquals(a.asientos.size(), 1);
+	}
+
+	@Test
+	public void deleteTripulante_denied() {
+		String nombre = "Juan";
+		String apellido = "Peres";
+		String emailAddress = "jaun@gmail.com";
+		String tipo = "TIERRA";
+		Double horasVuelo = 52121.0;
+		Double nroMillas = 1200.0;
+		UUID keyCargo = UUID.randomUUID();
+
+		Tripulacion a = new Tripulacion("GRUPO-D");
+		Tripulante as = new Tripulante(
+			nombre,
+			apellido,
+			emailAddress,
+			tipo,
+			horasVuelo,
+			nroMillas,
+			keyCargo
+		);
+		try {
+			a.eliminarTripulante(UUID.randomUUID());
+		} catch (Exception e1) {}
+		Tripulante as2 = new Tripulante(
+			nombre,
+			apellido,
+			emailAddress,
+			tipo,
+			horasVuelo,
+			nroMillas,
+			keyCargo
+		);
+		as2.key = as.key;
+		try {
+			a.eliminarTripulante(as2.key);
+		} catch (Exception e) {
+			Assert.assertTrue(true);
+		}
+	}
+
+	@Test
 	public void Handle_Ok() {
 		// creando
 		String descripcion = "GRUPO-C";
