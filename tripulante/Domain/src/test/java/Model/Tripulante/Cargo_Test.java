@@ -26,10 +26,10 @@ public class Cargo_Test {
 	}
 
 	@Test
-	public void HandleCargo_Ok() {
+	public void Handle_Ok() {
 		// creando tripulante
 		UUID keyTest = UUID.randomUUID();
-		String descripcionTest = "Perez";
+		String descripcionTest = "Piloto";
 
 		Cargo CargoTest = new Cargo();
 		Cargo CargoTest2 = new Cargo(anyString());
@@ -38,5 +38,6 @@ public class Cargo_Test {
 		CargoTest.setKeyCargo(keyTest);
 
 		Assert.assertEquals(descripcionTest, CargoTest.getDescripcion());
+		Assert.assertEquals(keyTest, CargoTest.getKeyCargo());
 	}
 }
