@@ -62,7 +62,7 @@ public class CrearTripulanteHandler
 			cargo.key
 		);
 
-		tripulante.eventCreado();
+		// tripulante.eventCreado();
 
 		_tripulanteRepository.Create(tripulante);
 		_unitOfWork.commit();

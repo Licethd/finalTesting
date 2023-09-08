@@ -13,13 +13,15 @@ public class EliminarTripulacionCommand_Test {
 		UUID key = UUID.randomUUID();
 		String descripcion = "Tripulacion Test";
 		TripulacionDto dto = new TripulacionDto();
-		dto.key = key;
-		dto.Descripcion = descripcion;
+		// dto.key = key;
+		// dto.Descripcion = descripcion;
+		dto.setKey(key);
+		dto.setDescripcion(descripcion);
 
 		EliminarTripulacionCommand command = new EliminarTripulacionCommand(
-			dto.key
+			dto.getKey()
 		);
-		Assert.assertEquals(dto.key, command.tripulacion.key);
+		Assert.assertEquals(key, command.tripulacion.getKey());
 	}
 
 	@Test
