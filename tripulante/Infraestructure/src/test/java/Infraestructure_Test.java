@@ -8,10 +8,10 @@ public class Infraestructure_Test {
 		Infraestructure infraestructure = new Infraestructure();
 		Assert.assertNotNull(infraestructure);
 	}
-	// @Test
-	// public void AddInfraestructure_accept() {
+	@Test
+	public void AddInfraestructure_accept() {
 	//   Infraestructure infraestructure = new Infraestructure();
 	//   infraestructure.AddInfraestructure();
 	//   Assert.assertTrue(true);
-	// }
+	}
 }

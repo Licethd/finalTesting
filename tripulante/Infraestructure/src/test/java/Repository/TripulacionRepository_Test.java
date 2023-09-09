@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 
 import Context.IWriteDbContext;
 import Fourteam.db.DbSet;
+import Fourteam.db.IDbSet.BooleanFunction;
 import Fourteam.db.Exception.DataBaseException;
 import Model.Tripulacion.Tripulacion;
 import java.util.UUID;
@@ -32,23 +33,36 @@ public class TripulacionRepository_Test {
 	}
 
 	@Test
+	public void probando_lambda_by_key() {
+		Tripulacion a = new Tripulacion("Puma");
+		// when(_marcas.Single(any())).then
+		TripulacionRepository repository = new TripulacionRepository(_database);
+		BooleanFunction<Tripulacion> equalkey = repository.equalKey(a.key);
+		equalkey.run(a);
+	}
+
+	@Test
 	public void FindByKey_accept() throws Exception {
-		// Mockito.verify(_tripulacion).Single(obj -> obj.key.equals(UUID.randomUUID()));
+		// Mockito.verify(_tripulacion).Single(obj ->
+		// obj.key.equals(UUID.randomUUID()));
 		Tripulacion a = new Tripulacion();
 		when(_tripulacion.Single(any())).thenReturn(a);
 		TripulacionRepository repository = new TripulacionRepository(_database);
-		// ArgumentCaptor<Tripulacion> captor = ArgumentCaptor.forClass(Tripulacion.class);
+		// ArgumentCaptor<Tripulacion> captor =
+		// ArgumentCaptor.forClass(Tripulacion.class);
 		repository.FindByKey(UUID.randomUUID());
 		Assert.assertNotNull(repository);
 	}
 
 	@Test
 	public void FindByTripulante_accept() throws Exception {
-		// Mockito.verify(_tripulacion).Single(obj -> obj.key.equals(UUID.randomUUID()));
+		// Mockito.verify(_tripulacion).Single(obj ->
+		// obj.key.equals(UUID.randomUUID()));
 		Tripulacion a = new Tripulacion();
 		when(_tripulacion.Single(any())).thenReturn(a);
 		TripulacionRepository repository = new TripulacionRepository(_database);
-		// ArgumentCaptor<Tripulacion> captor = ArgumentCaptor.forClass(Tripulacion.class);
+		// ArgumentCaptor<Tripulacion> captor =
+		// ArgumentCaptor.forClass(Tripulacion.class);
 		repository.FindByTripulante(a, UUID.randomUUID());
 		Assert.assertNotNull(repository);
 	}

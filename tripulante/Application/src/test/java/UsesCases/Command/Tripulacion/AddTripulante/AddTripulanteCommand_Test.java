@@ -17,6 +17,8 @@ public class AddTripulanteCommand_Test {
 		dto.Nombre = descripcion;
 
 		AddTripulanteCommand command = new AddTripulanteCommand(dto.key);
+
+		command.setTripulante(dto);
 		// Assert.assertEquals(dto.key, command.Tripulante.getKey());
 	}
 

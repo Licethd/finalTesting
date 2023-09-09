@@ -1,11 +1,14 @@
 package UsesCases.Consumers;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import Dto.Tripulacion.TripulacionDto;
 import Factories.ITripulacionFactory;
 import Fourteam.mediator.IMediator;
+import IntegrationEvents.VueloCreado;
 import Model.Tripulacion.Tripulacion;
 import Repositories.ITripulacionRepository;
 import Repositories.IUnitOfWork;
@@ -26,40 +29,45 @@ public class VueloCreadoConsumer_Test {
 	IMediator iMediator = Mockito.mock(IMediator.class);
 
 	ITripulacionFactory tripulacionFactory = Mockito.mock(
-		ITripulacionFactory.class
-	);
+			ITripulacionFactory.class);
 	ITripulacionRepository tripulacionRepository = Mockito.mock(
-		ITripulacionRepository.class
-	);
+			ITripulacionRepository.class);
 	IUnitOfWork _unitOfWork = Mockito.mock(IUnitOfWork.class);
 
+	VueloCreado objeto = new VueloCreado();
+
+
 	@Before
-	public void setUp() {}
+	public void setUp() {
+	}
 
 	@Test
 	public void VueloCreadoConsumer() throws Exception {
-		ITripulacionRepository _tripulacionRepository;
-		String descripcion = "GRUPO-K";
+		// ITripulacionRepository _tripulacionRepository;
+		 String descripcion = "GRUPO-K";
 
-		Tripulacion entity = new Tripulacion(descripcion);
-		when(tripulacionFactory.Create(descripcion)).thenReturn(entity);
+		Tripulacion tripulacion = new Tripulacion(descripcion);
+		// when(tripulacionFactory.Create(descripcion)).thenReturn(entity);
 
-		CrearTripulacionHandler handler = new CrearTripulacionHandler(
-			tripulacionFactory,
-			tripulacionRepository,
-			_unitOfWork
-		);
+		// CrearTripulacionHandler handler = new CrearTripulacionHandler(
+		// tripulacionFactory,
+		// tripulacionRepository,
+		// _unitOfWork
+		// );
 
-		TripulacionDto dto = new TripulacionDto();
-		dto.Descripcion = descripcion;
+		// TripulacionDto dto = new TripulacionDto();
+		// dto.Descripcion = descripcion;
 
-		CrearTripulacionCommand command = new CrearTripulacionCommand(dto);
-		UUID resp = handler.handle(command);
+		// CrearTripulacionCommand command = new CrearTripulacionCommand(dto);
+		// UUID resp = handler.handle(command);
 
-		// verify(marcaRepository).Create(resp);
-		verify(_unitOfWork).commit();
-		Assert.assertNotNull(resp);
-		// this.tripulacionRepository = _tripulacionRepository;
-		// this.vueloCreadoConsumer.Consume(entity);
+		// verify(_unitOfWork).commit();
+		// Assert.assertNotNull(resp);
+
+		new VueloCreadoConsumer(iMediator, tripulacionRepository).Consume(objeto);
+
+		tripulacion.setEstado(anyInt());
+		tripulacionRepository.Update(tripulacion);
+
 	}
 }

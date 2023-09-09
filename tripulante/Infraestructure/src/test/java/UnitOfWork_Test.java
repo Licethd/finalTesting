@@ -1,6 +1,8 @@
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 import Context.IWriteDbContext;
+import Fourteam.db.Exception.DataBaseException;
 import Fourteam.http.Exception.HttpException;
 import Fourteam.mediator.Mediator;
 import core.DomainEvent;
@@ -45,4 +47,16 @@ public class UnitOfWork_Test {
 			e.printStackTrace();
 		}
 	}
+
+	@Test
+  public void commit_database_error() throws Exception {
+    List<Object> list = new ArrayList<Object>();
+    list.add(new DomainEvent() {});
+
+    doThrow(new DataBaseException("Error")).when(_context).Commit();
+    // when(_context.Commit()).
+    // when(_context.getDomainEvents()).thenReturn(list);
+    UnitOfWork unitOfWork = new UnitOfWork(_context, null);
+    unitOfWork.commit();
+  }
 }

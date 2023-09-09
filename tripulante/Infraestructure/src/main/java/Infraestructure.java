@@ -28,17 +28,17 @@ public class Infraestructure {
 			TripulacionRepository.class
 		);
 		Application.AddApplication();
-		AddRabbitMq();
+		// AddRabbitMq();
 	}
 
-	private static void AddRabbitMq() {
-		IServiceCollection.AddMassTransit(config -> {
-			config.AddConsumer(VueloCreadoConsumer.class);
-			config.UsingRabbitMq((context, cfg) -> {
-				cfg.Host = Config.getProperty("rabit.host");
-				cfg.User = Config.getProperty("rabit.user");
-				cfg.Password = Config.getProperty("rabit.pass");
-			});
-		});
-	}
+	// private static void AddRabbitMq() {
+	// 	IServiceCollection.AddMassTransit(config -> {
+	// 		config.AddConsumer(VueloCreadoConsumer.class);
+	// 		config.UsingRabbitMq((context, cfg) -> {
+	// 			cfg.Host = Config.getProperty("rabit.host");
+	// 			cfg.User = Config.getProperty("rabit.user");
+	// 			cfg.Password = Config.getProperty("rabit.pass");
+	// 		});
+	// 	});
+	// }
 }
