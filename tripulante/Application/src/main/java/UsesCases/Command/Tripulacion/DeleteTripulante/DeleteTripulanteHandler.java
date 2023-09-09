@@ -59,13 +59,6 @@ public class DeleteTripulanteHandler
 			);
 		}
 
-		// Tripulacion tripulanteValidar = _tripulacionRepository.FindByTripulante(tripulacion, request.Tripulante.key);
-		// if (tripulanteValidar != null) {
-		// 	throw new HttpException(
-		// 			HttpStatus.BAD_REQUEST,
-		// 			"Tripulante ya existe");
-		// }
-
 		tripulacion.eliminarTripulante(request.Tripulante.key);
 		//Change estado tripulante
 		tripulante.setEstado(1);

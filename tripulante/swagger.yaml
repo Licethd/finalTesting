@@ -141,13 +141,6 @@ paths:
                   name: key
                   required: true
             tags: [/tripulante]
-    /tripulacion/:
-        get:
-            summary: /tripulacion getAll
-            operationId: /tripulacion_getAll
-            responses:
-                "200": {description: Response 200}
-            tags: [/tripulacion]
     /tripulacion/addTripulante/{key}:
         put:
             summary: /tripulacion addTripulante
@@ -163,6 +156,13 @@ paths:
                   in: path
                   name: key
                   required: true
+            tags: [/tripulacion]
+    /tripulacion/:
+        get:
+            summary: /tripulacion getAll
+            operationId: /tripulacion_getAll
+            responses:
+                "200": {description: Response 200}
             tags: [/tripulacion]
     /tripulacion/{key}:
         get:

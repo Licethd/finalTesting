@@ -10,6 +10,7 @@ import Dto.Tripulante.TripulanteDto;
 import Factories.ICargoFactory;
 import Factories.ITripulacionFactory;
 import Factories.ITripulanteFactory;
+import Fourteam.http.Exception.HttpException;
 import Model.Tripulacion.Tripulacion;
 import Model.Tripulante.Cargo;
 import Model.Tripulante.Tripulante;
@@ -61,20 +62,20 @@ public class CrearTripulanteHandler_Test {
 		);
 		when(
 			tripulanteFactory.Create(
-				nombre,
-				apellido,
-				emailAddress,
-				"1",
-				tipo,
-				horasVuelo,
-				nroMillas,
-				keyCargo
+				any(),
+				any(),
+				any(),
+				any(),
+				any(),
+				any(),
+				any(),
+				any()
 			)
 		)
 			.thenReturn(entity);
 
 		Cargo m = new Cargo("Piloto");
-		when(cargoRepository.FindByKey(keyCargo)).thenReturn(m);
+		when(cargoRepository.FindByKey(any())).thenReturn(m);
 
 		CrearTripulanteHandler handler = new CrearTripulanteHandler(
 			tripulanteFactory,
@@ -85,11 +86,80 @@ public class CrearTripulanteHandler_Test {
 
 		TripulanteDto dto = new TripulanteDto();
 		dto.Nombre = nombre;
+		dto.Apellido = apellido;
+		dto.EmailAddress = emailAddress;
+		dto.Estado = estado;
+		dto.Tipo = tipo;
+		dto.HorasVuelo = horasVuelo;
+		dto.NroMillas = nroMillas;
+		dto.KeyCargo = keyCargo;
 
 		CrearTripulanteCommand command = new CrearTripulanteCommand(dto);
-		// UUID resp = handler.handle(command);  //se tira
+		UUID resp = handler.handle(command); // se tira
 
-		// verify(_unitOfWork).commit();
-		// Assert.assertNotNull(resp);
+		verify(_unitOfWork).commit();
+		Assert.assertNotNull(resp);
+	}
+
+	@Test
+	public void HandleIncorrectly() throws Exception {
+		String nombre = "Julio";
+		String apellido = "Morales";
+		String emailAddress = "juanito@gmail.com";
+		String estado = "1";
+		String tipo = "AIRE";
+		Double horasVuelo = 1522.0;
+		Double nroMillas = 1522.0;
+		UUID keyCargo = UUID.randomUUID();
+
+		Tripulante entity = new Tripulante(
+			"Julio",
+			"Flores",
+			"julio@gmail.com",
+			"AIRE",
+			1522.0,
+			453.0,
+			keyCargo
+		);
+		when(
+			tripulanteFactory.Create(
+				any(),
+				any(),
+				any(),
+				any(),
+				any(),
+				any(),
+				any(),
+				any()
+			)
+		)
+			.thenReturn(entity);
+
+		Cargo m = new Cargo("Piloto");
+		when(cargoRepository.FindByKey(any())).thenReturn(null);
+
+		CrearTripulanteHandler handler = new CrearTripulanteHandler(
+			tripulanteFactory,
+			tripulanteRepository,
+			cargoRepository,
+			_unitOfWork
+		);
+
+		TripulanteDto dto = new TripulanteDto();
+		dto.Nombre = nombre;
+		dto.Apellido = apellido;
+		dto.EmailAddress = emailAddress;
+		dto.Estado = estado;
+		dto.Tipo = tipo;
+		dto.HorasVuelo = horasVuelo;
+		dto.NroMillas = nroMillas;
+		dto.KeyCargo = keyCargo;
+
+		CrearTripulanteCommand command = new CrearTripulanteCommand(dto);
+		try {
+			handler.handle(command);
+		} catch (HttpException e) {
+			Assert.assertEquals(400, e.getCode());
+		}
 	}
 }

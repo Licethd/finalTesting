@@ -35,6 +35,8 @@ public class TripulanteDto_Test {
 			null,
 			null
 		);
+		tripulante.setEstado("1");
+		tripulante.getEstado();
 
 		Assert.assertEquals(null, tripulante.getKey());
 		Assert.assertNull(tripulante.getNombre());
