@@ -1,214 +1,209 @@
 servers:
-    - {url: "http://localhost:8080/api/"}
+- {url: 'http://localhost:8080/api/'}
 openapi: 3.0.0
 paths:
-    /tripulante/registro:
-        post:
-            summary: /tripulante register
-            requestBody:
-                content:
-                    application/json:
-                        schema: {type: object}
-            operationId: /tripulante_register
-            responses:
-                "200": {description: Response 200}
-            tags: [/tripulante]
-    /tripulante/:
-        get:
-            summary: /tripulante getAll
-            operationId: /tripulante_getAll
-            responses:
-                "200": {description: Response 200}
-            tags: [/tripulante]
-    /cargo/registro:
-        post:
-            summary: /cargo register
-            requestBody:
-                content:
-                    application/json:
-                        schema: {type: object}
-            operationId: /cargo_register
-            responses:
-                "200": {description: Response 200}
-            tags: [/cargo]
-    /cargo/:
-        get:
-            summary: /cargo getAll
-            operationId: /cargo_getAll
-            responses:
-                "200": {description: Response 200}
-            tags: [/cargo]
-    /cargo/{key}:
-        get:
-            summary: /cargo getByKey
-            operationId: /cargo_getByKey
-            responses:
-                "200": {description: Response 200}
-            parameters:
-                - schema: {type: string}
-                  in: path
-                  name: key
-                  required: true
-            tags: [/cargo]
-        delete:
-            summary: /cargo delete
-            operationId: /cargo_delete
-            responses:
-                "200": {description: Response 200}
-            parameters:
-                - schema: {type: string}
-                  in: path
-                  name: key
-                  required: true
-            tags: [/cargo]
-        put:
-            summary: /cargo edit
-            requestBody:
-                content:
-                    application/json:
-                        schema: {type: object}
-            operationId: /cargo_edit
-            responses:
-                "200": {description: Response 200}
-            parameters:
-                - schema: {type: string}
-                  in: path
-                  name: key
-                  required: true
-            tags: [/cargo]
-    /tripulacion/registro:
-        post:
-            summary: /tripulacion register
-            requestBody:
-                content:
-                    application/json:
-                        schema: {type: object}
-            operationId: /tripulacion_register
-            responses:
-                "200": {description: Response 200}
-            tags: [/tripulacion]
-    /tripulacion/deleteTripulante/{key}:
-        put:
-            summary: /tripulacion deleteTripulante
-            requestBody:
-                content:
-                    application/json:
-                        schema: {type: object}
-            operationId: /tripulacion_deleteTripulante
-            responses:
-                "200": {description: Response 200}
-            parameters:
-                - schema: {type: string}
-                  in: path
-                  name: key
-                  required: true
-            tags: [/tripulacion]
-    /tripulante/{key}:
-        get:
-            summary: /tripulante getByKey
-            operationId: /tripulante_getByKey
-            responses:
-                "200": {description: Response 200}
-            parameters:
-                - schema: {type: string}
-                  in: path
-                  name: key
-                  required: true
-            tags: [/tripulante]
-        delete:
-            summary: /tripulante delete
-            operationId: /tripulante_delete
-            responses:
-                "200": {description: Response 200}
-            parameters:
-                - schema: {type: string}
-                  in: path
-                  name: key
-                  required: true
-            tags: [/tripulante]
-        put:
-            summary: /tripulante edit
-            requestBody:
-                content:
-                    application/json:
-                        schema: {type: object}
-            operationId: /tripulante_edit
-            responses:
-                "200": {description: Response 200}
-            parameters:
-                - schema: {type: string}
-                  in: path
-                  name: key
-                  required: true
-            tags: [/tripulante]
-    /tripulacion/addTripulante/{key}:
-        put:
-            summary: /tripulacion addTripulante
-            requestBody:
-                content:
-                    application/json:
-                        schema: {type: object}
-            operationId: /tripulacion_addTripulante
-            responses:
-                "200": {description: Response 200}
-            parameters:
-                - schema: {type: string}
-                  in: path
-                  name: key
-                  required: true
-            tags: [/tripulacion]
-    /tripulacion/:
-        get:
-            summary: /tripulacion getAll
-            operationId: /tripulacion_getAll
-            responses:
-                "200": {description: Response 200}
-            tags: [/tripulacion]
-    /tripulacion/{key}:
-        get:
-            summary: /tripulacion getByKey
-            operationId: /tripulacion_getByKey
-            responses:
-                "200": {description: Response 200}
-            parameters:
-                - schema: {type: string}
-                  in: path
-                  name: key
-                  required: true
-            tags: [/tripulacion]
-        delete:
-            summary: /tripulacion delete
-            operationId: /tripulacion_delete
-            responses:
-                "200": {description: Response 200}
-            parameters:
-                - schema: {type: string}
-                  in: path
-                  name: key
-                  required: true
-            tags: [/tripulacion]
-        put:
-            summary: /tripulacion edit
-            requestBody:
-                content:
-                    application/json:
-                        schema: {type: object}
-            operationId: /tripulacion_edit
-            responses:
-                "200": {description: Response 200}
-            parameters:
-                - schema: {type: string}
-                  in: path
-                  name: key
-                  required: true
-            tags: [/tripulacion]
-info:
-    {
-        description: FuourTeam API description,
-        title: FourTeam API,
-        version: 1.0.1,
-    }
+  /tripulante/:
+    get:
+      summary: /tripulante getAll
+      operationId: /tripulante_getAll
+      responses:
+        '200': {description: Response 200}
+      tags: [/tripulante]
+  /tripulante/registro:
+    post:
+      summary: /tripulante register
+      requestBody:
+        content:
+          application/json:
+            schema: {type: object}
+      operationId: /tripulante_register
+      responses:
+        '200': {description: Response 200}
+      tags: [/tripulante]
+  /cargo/:
+    get:
+      summary: /cargo getAll
+      operationId: /cargo_getAll
+      responses:
+        '200': {description: Response 200}
+      tags: [/cargo]
+  /cargo/registro:
+    post:
+      summary: /cargo register
+      requestBody:
+        content:
+          application/json:
+            schema: {type: object}
+      operationId: /cargo_register
+      responses:
+        '200': {description: Response 200}
+      tags: [/cargo]
+  /cargo/{key}:
+    get:
+      summary: /cargo getByKey
+      operationId: /cargo_getByKey
+      responses:
+        '200': {description: Response 200}
+      parameters:
+      - schema: {type: string}
+        in: path
+        name: key
+        required: true
+      tags: [/cargo]
+    delete:
+      summary: /cargo delete
+      operationId: /cargo_delete
+      responses:
+        '200': {description: Response 200}
+      parameters:
+      - schema: {type: string}
+        in: path
+        name: key
+        required: true
+      tags: [/cargo]
+    put:
+      summary: /cargo edit
+      requestBody:
+        content:
+          application/json:
+            schema: {type: object}
+      operationId: /cargo_edit
+      responses:
+        '200': {description: Response 200}
+      parameters:
+      - schema: {type: string}
+        in: path
+        name: key
+        required: true
+      tags: [/cargo]
+  /tripulacion/registro:
+    post:
+      summary: /tripulacion register
+      requestBody:
+        content:
+          application/json:
+            schema: {type: object}
+      operationId: /tripulacion_register
+      responses:
+        '200': {description: Response 200}
+      tags: [/tripulacion]
+  /tripulacion/deleteTripulante/{key}:
+    put:
+      summary: /tripulacion deleteTripulante
+      requestBody:
+        content:
+          application/json:
+            schema: {type: object}
+      operationId: /tripulacion_deleteTripulante
+      responses:
+        '200': {description: Response 200}
+      parameters:
+      - schema: {type: string}
+        in: path
+        name: key
+        required: true
+      tags: [/tripulacion]
+  /tripulante/{key}:
+    get:
+      summary: /tripulante getByKey
+      operationId: /tripulante_getByKey
+      responses:
+        '200': {description: Response 200}
+      parameters:
+      - schema: {type: string}
+        in: path
+        name: key
+        required: true
+      tags: [/tripulante]
+    delete:
+      summary: /tripulante delete
+      operationId: /tripulante_delete
+      responses:
+        '200': {description: Response 200}
+      parameters:
+      - schema: {type: string}
+        in: path
+        name: key
+        required: true
+      tags: [/tripulante]
+    put:
+      summary: /tripulante edit
+      requestBody:
+        content:
+          application/json:
+            schema: {type: object}
+      operationId: /tripulante_edit
+      responses:
+        '200': {description: Response 200}
+      parameters:
+      - schema: {type: string}
+        in: path
+        name: key
+        required: true
+      tags: [/tripulante]
+  /tripulacion/:
+    get:
+      summary: /tripulacion getAll
+      operationId: /tripulacion_getAll
+      responses:
+        '200': {description: Response 200}
+      tags: [/tripulacion]
+  /tripulacion/addTripulante/{key}:
+    put:
+      summary: /tripulacion addTripulante
+      requestBody:
+        content:
+          application/json:
+            schema: {type: object}
+      operationId: /tripulacion_addTripulante
+      responses:
+        '200': {description: Response 200}
+      parameters:
+      - schema: {type: string}
+        in: path
+        name: key
+        required: true
+      tags: [/tripulacion]
+  /tripulacion/{key}:
+    get:
+      summary: /tripulacion getByKey
+      operationId: /tripulacion_getByKey
+      responses:
+        '200': {description: Response 200}
+      parameters:
+      - schema: {type: string}
+        in: path
+        name: key
+        required: true
+      tags: [/tripulacion]
+    delete:
+      summary: /tripulacion delete
+      operationId: /tripulacion_delete
+      responses:
+        '200': {description: Response 200}
+      parameters:
+      - schema: {type: string}
+        in: path
+        name: key
+        required: true
+      tags: [/tripulacion]
+    put:
+      summary: /tripulacion edit
+      requestBody:
+        content:
+          application/json:
+            schema: {type: object}
+      operationId: /tripulacion_edit
+      responses:
+        '200': {description: Response 200}
+      parameters:
+      - schema: {type: string}
+        in: path
+        name: key
+        required: true
+      tags: [/tripulacion]
+info: {description: FuourTeam API description, title: FourTeam API, version: 1.0.1}
 tags:
-    - {name: /tripulante, description: /tripulante_descripcion}
-    - {name: /cargo, description: /cargo_descripcion}
-    - {name: /tripulacion, description: /tripulacion_descripcion}
+- {name: /tripulante, description: /tripulante_descripcion}
+- {name: /cargo, description: /cargo_descripcion}
+- {name: /tripulacion, description: /tripulacion_descripcion}
