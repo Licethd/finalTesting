@@ -1,6 +1,5 @@
 package UsesCases.Command.Cargo.Crear;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -9,8 +8,6 @@ import Factories.ICargoFactory;
 import Model.Tripulante.Cargo;
 import Repositories.ICargoRepository;
 import Repositories.IUnitOfWork;
-import UsesCases.Command.Cargo.Crear.CrearCargoCommand;
-import UsesCases.Command.Cargo.Crear.CrearCargoHandler;
 import java.util.UUID;
 import org.junit.Assert;
 import org.junit.Before;
@@ -45,7 +42,6 @@ public class CrearCargoHandler_Test {
 		CrearCargoCommand command = new CrearCargoCommand(dto);
 		UUID resp = handler.handle(command);
 
-		// verify(marcaRepository).Create(resp);
 		verify(_unitOfWork).commit();
 		Assert.assertNotNull(resp);
 	}

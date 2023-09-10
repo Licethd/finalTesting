@@ -29,9 +29,17 @@ cat > ./target/jacoco/index.html << EOF
     <title>Document</title>
 </head>
 <body>
-    <h1>FourTeam</h1>
-    <h3>Jacoco Coverage</h1>
-    ${items}
+    <hr height="30" />
+	<div style="margin: 0 auto; width:400px">
+	<div align="center" style="border-style: double;
+    border-right-width: 4px; padding:25px; border-color:#000; text-align: center">
+    	<h1>PRESENTACION FINAL TESTING</h1>
+    	<h3>Jacoco Coverage</h1>
+		<hr height="30" />
+    	${items}
+		<hr height="30" />
+</div>
+</div>
 </body>
 </html>
 EOF
