@@ -9,7 +9,7 @@ while IFS= read -r line ; do
     if [ -d "$line" ]; then
         if [ -d "$line/target/site" ]; then
             cp -r ./$line/target/site/jacoco/ ./target/jacoco/$line/
-            items+="<a href='${line}/index.html'>${line}</a><br/>"
+            items+="<a style="font-size:20px" href='${line}/index.html'>${line}</a><br/>"
             echo "$finded"
             echo "Copied $line"
         else
